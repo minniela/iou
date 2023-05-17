@@ -1,0 +1,125 @@
+A Tale as Old as Time (from the Preface)
+  - Once upon a time, a consultant made a visit to a development project. The consultant looked at
+    some of the code that had been written; there was a class hierarchy at the center of the system.
+    As he wandered through the hierarchy, the consultant saw that it was rather messy. The higher level classes made
+    certain assumptions about how the classes would work, assumptions that
+    were embodied in inherited code. That code didn't suit all the subclasses, however, and was
+    overridden quite heavily. If the superclass had been modified a little, then much less overriding
+    would have been necessary. In other places some of the intention of the superclass had not been
+    properly understood, and behavior present in the superclass was duplicated. In yet other places
+    several subclasses did the same thing with code that could clearly be moved up the hierarchy.
+  - The consultant recommended to the project management that the code be looked at and cleaned
+    up, but the project management didn't seem enthusiastic. The code seemed to work and there
+    were considerable schedule pressures. The managers said they would get around to it at some
+    later point.
+  - The consultant had also shown the programmers who had worked on the hierarchy what was
+    going on. The programmers were keen and saw the problem. They knew that it wasn't really their
+    fault; sometimes a new pair of eyes are needed to spot the problem. So the programmers spent a
+    day or two cleaning up the hierarchy. When they were finished, the programmers had removed
+    half the code in the hierarchy without reducing its functionality. They were pleased with the result
+    and found that it became quicker and easier both to add new classes to the hierarchy and to use
+    the classes in the rest of the system
+  - The consultant recommended to the project management that the code be looked at and cleaned
+    up, but the project management didn't seem enthusiastic. The code seemed to work and there
+    were considerable schedule pressures. The managers said they would get around to it at some
+    later point.
+
+Preface: Continued
+  - In our current understanding of software development we believe that we design and then we code. A good
+    design comes first, and the coding comes second. Over time the code will be modified, and the
+    integrity of the system, its structure according to that design, gradually fades. The code slowly
+    sinks from engineering to hacking.
+  - Refactoring is the opposite of this practice. With refactoring you can take a bad design, chaos
+    even, and rework it into well-designed code.
+  - It is the exact reverse of the normal notion of software decay.
+  - You will learn to refactor in such a way that you don't introduce bugs into the code but instead methodically
+    improve the structure.
+
+Chapter 1: Refactoring, a First Example
+  - Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
+
+
+Chapter 2: Principles in Refactoring
+  - I've been asked, "Is refactoring just cleaning up code?" In a way the answer is yes, but I think
+    refactoring goes further because it provides a technique for cleaning up code in a more efficient
+    and controlled manner.
+  - Refactoring does not change the observable behavior
+    of the software. The software still carries out the same function that it did before. Any user,
+    whether an end user or another programmer, cannot tell that things have changed.
+
+Why Should You Refactor? (from Chapter 2)
+  - Refactoring Improves the Design of Software
+    - Without refactoring, the design of the program will decay.
+    - Refactoring is rather like tidying up the code. Work is done to remove bits that aren't really in the
+      right place. Loss of the structure of code has a cumulative effect. The harder it is to see the
+      design in the code, the harder it is to preserve it, and the more rapidly it decays. Regular
+      refactoring helps code retain its shape.
+  - Refactoring Makes Software Easier to Understand
+    - Programming is in many ways a conversation with a computer. You write code that tells the
+      computer what to do, and it responds by doing exactly what you tell it. In time you close the gap
+      between what you want it to do and what you tell it to do. Programming in this mode is all about
+      saying exactly what you want.
+    - Who cares if the computer takes a few more cycles to compile something? It does matter if it takes a programmer
+      a week to make a change that would have taken only an hour if she had understood your code.
+    - The trouble is that when you are trying to get the program to work, you are not thinking about that
+      future developer.
+    - A little time spent refactoring can make the code better communicate its purpose. Programming in this mode
+      is all about saying exactly what you mean.
+    - One of my forms of laziness is that I never remember things about the code I write. Indeed, I deliberately
+      try not remember anything I can look up, because I'm afraid my brain will get full. I make a point of trying
+      to put everything I should remember into the code so I don't have to remember it.
+    - I use refactoring to help me understand unfamiliar code. When I look at unfamiliar code, I have to try to
+      understand what it does. I look at a couple of lines and say to myself, oh yes, that's what this bit of code
+      is doing. With refactoring I don't stop at the mental note. I actually change the code to better reflect
+      my understanding, and then I test that understanding by rerunning the code to see if it still works.
+    - As the code gets clearer, I find I can see things
+      about the design that I could not see before. Had I not changed the code, I probably never would
+      have seen these things, because I'm just not clever enough to visualize all this in my head. Ralph
+      Johnson describes these early refactorings as wiping the dirt off a window so you can see
+      beyond.
+  - Refactoring Helps You Find Bugs
+    - However, I find that if I
+      refactor code, I work deeply on understanding what the code does, and I put that new
+      understanding right back into the code. By clarifying the structure of the program, I clarify certain
+      assumptions I've made, to the point at which even I can't avoid spotting the bugs.
+    - "I'm not a great programmer; I'm just a good programmer with great habits." -Kent Beck
+  - Refactoring Helps You Program Faster
+    - In the end, all the earlier points come down to this: Refactoring helps you develop code more quickly.
+    - This sounds counterintuitive. When I talk about refactoring, people can easily see that it improves
+      quality. Improving design, improving readability, reducing bugs, all these improve quality. But
+      doesn't all this reduce the speed of development?
+    - Without a good design, you
+      can progress quickly for a while, but soon the poor design starts to slow you down. You spend
+      time finding and fixing bugs instead of adding new function. Changes take longer as you try to
+      understand the system and find the duplicate code. New features need more coding as you patch
+      over a patch that patches a patch on the original code base.
+
+The Power of Indirection (from Chapter 2)
+  - Computer Science is the discipline that believes all problems can be solved with
+    one more layer of indirection. -Dennis DeBruler
+  - Given software engineers' infatuation with indirection, it may not surprise
+    you to learn that most refactoring introduces more indirection into a
+    program. Refactoring tends to break big objects into several smaller
+    ones and big methods into several smaller ones.
+  - Indirection can pay for itself. Here are some of the ways:
+    - To enable sharing of logic.
+    - To explain intention and implementation separately
+    - To isolate change.
+    - To encode conditional logic.
+  - Here is the refactoring game:
+    - Maintaining the current behavior of the system, how can you make your system more valuable, either by
+      increasing its quality or by reducing its cost?
+
+Chapter 3: Bad Smells in Code
+
+
+
+Chapter 4: Building Tests
+
+
+
+Chapter 5: Toward a Catalog of Refactoring
+
+
+
+Chapter 6:

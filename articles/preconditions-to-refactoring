@@ -1,0 +1,15 @@
+Identify Any and All External Dependencies
+  - While in Salesforce this is less challenging than a Java stack, as in the passage below, Salesforce is a large
+    ecosystem and developers are creative. If you have any code that is called externally, or any other dependencies
+    that would hamper refactoring, think them through. Luckily with this approach, you are less likely to get lost
+    in the complexity of refactoring, but you don't want to find out the hard way that some consultant hacked together
+    some API and now it's breaking.
+  - "There is no problem changing a method name if you have access to all the code that calls that
+    method. Even if the method is public, as long as you can reach and change all the callers, you
+    can rename the method. There is a problem only if the interface is being used by code that you
+    cannot find and change. When this happens, I say that the interface becomes a published
+    interface (a step beyond a public interface)."
+
+Log and Organize Your Apex Exception Emails
+  - This provides a good benchmark and is telling to report on. It is quite nice to hear that {N} CPU Timeouts and
+    SOQL 101 errors stopped reporting.

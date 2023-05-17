@@ -1,0 +1,5 @@
+Once upon a time, a Salesforce consultancy was hired to rescue a failing project. The project had been in flight
+for over a year, the timeline and budget far exceeded, and the blame shifting game had already begun in earnest.
+
+The consultancy won the bid and their developers stepped into a world of messy automation, unclear requirements,
+and gene
