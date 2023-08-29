@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Failing_Persons__c</fullName>
+    <description>Any user, profile, or permission that the approved logic failed to uphold while testing.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Any user, profile, or permission that the approved logic failed to uphold while testing.</inlineHelpText>
+    <label>Failing Persons</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>
