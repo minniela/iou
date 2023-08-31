@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>The current state of the method in the refactoring lifecycle.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The current state of the method in the refactoring lifecycle.</inlineHelpText>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Created</fullName>
+                <default>true</default>
+                <label>Created</label>
+            </value>
+            <value>
+                <fullName>Refactoring</fullName>
+                <default>false</default>
+                <label>Refactoring</label>
+            </value>
+            <value>
+                <fullName>Excavating</fullName>
+                <default>false</default>
+                <label>Excavating</label>
+            </value>
+            <value>
+                <fullName>Merged</fullName>
+                <default>false</default>
+                <label>Merged</label>
+            </value>
+            <value>
+                <fullName>Validating</fullName>
+                <default>false</default>
+                <label>Validating</label>
+            </value>
+            <value>
+                <fullName>Blocked</fullName>
+                <default>false</default>
+                <label>Blocked</label>
+            </value>
+            <value>
+                <fullName>Remodeling</fullName>
+                <default>false</default>
+                <label>Remodeling</label>
+            </value>
+            <value>
+                <fullName>Ready to Deploy</fullName>
+                <default>false</default>
+                <label>Ready to Deploy</label>
+            </value>
+            <value>
+                <fullName>Deprecated</fullName>
+                <default>false</default>
+                <label>Deprecated</label>
+            </value>
+            <value>
+                <fullName>QA Testing</fullName>
+                <default>false</default>
+                <label>QA Testing</label>
+            </value>
+            <value>
+                <fullName>UAT Testing</fullName>
+                <default>false</default>
+                <label>UAT Testing</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
