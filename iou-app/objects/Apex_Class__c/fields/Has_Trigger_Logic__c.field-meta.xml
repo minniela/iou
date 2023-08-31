@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Has_Trigger_Logic__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This class handles, helps, or provides service during trigger execution. Use this field to mark all classes involved in trigger automation, which then provides a scope for refactoring trigger code.</description>
+    <externalId>false</externalId>
+    <label>Has Trigger Logic</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
