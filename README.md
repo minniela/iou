@@ -1,3 +1,4 @@
 # Welcome to the IOU Tech Debt repayment app!
 
 [![Install Unlocked Package in a Sandbox](./images/btn-install-unlocked-package-sandbox.png)](https://test.salesforce.com/packaging/installPackage.apexp?p0=04tDp000000qSzoIAE)
+[![Install Unlocked Package in Production](./images/btn-install-unlocked-package-production.png)](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t5Y000001TsZAQA0)
