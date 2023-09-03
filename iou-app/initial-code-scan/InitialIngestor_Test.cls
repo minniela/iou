@@ -8,11 +8,21 @@ private class InitialIngestor_Test {
         InitialIngestor.initiate('defaultCodeScan');
         Test.stopTest();
 
-        List<Apex_Class__c> apexClasses = [SELECT Id FROM Apex_Class__c];
+        List<Apex_Class__c> apexClasses = [
+            SELECT Cost_to_Understand_Maintain__c, Cost_to_Change_Test__c, Code_Smells__c, Bad_Practices__c, Ineffectual_Tests__c
+            FROM Apex_Class__c
+        ];
         Assert.areEqual(1, apexClasses.size());
 
+        Apex_Class__c apexClass = apexClasses.get(0);
+        Assert.areEqual(248, apexClass.Cost_to_Understand_Maintain__c);
+        Assert.areEqual(40, apexClass.Cost_to_Change_Test__c);
+        Assert.areEqual(8, apexClass.Code_Smells__c);
+        Assert.areEqual(1, apexClass.Bad_Practices__c);
+        Assert.areEqual(1, apexClass.Ineffectual_Tests__c);
+
         List<Apex_Violation__c> apexViolations = [SELECT Id FROM Apex_Violation__c];
-        Assert.areEqual(11, apexViolations.size());
+        Assert.areEqual(13, apexViolations.size());
     }
 
     @IsTest
