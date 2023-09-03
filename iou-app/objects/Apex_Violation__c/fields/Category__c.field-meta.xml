@@ -14,9 +14,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Ineffectual Tests, Cost to Understand &amp; Maintain, Cost to Change &amp; Test, Code Smell, Bad Practice</fullName>
+                <fullName>Ineffectual Tests</fullName>
                 <default>false</default>
-                <label>Ineffectual Tests, Cost to Understand &amp; Maintain, Cost to Change &amp; Test, Code Smell, Bad Practice</label>
+                <label>Ineffectual Tests</label>
+            </value>
+            <value>
+                <fullName>Cost to Understand &amp; Maintain</fullName>
+                <default>false</default>
+                <label>Cost to Understand &amp; Maintain</label>
+            </value>
+            <value>
+                <fullName>Cost to Change &amp; Test</fullName>
+                <default>false</default>
+                <label>Cost to Change &amp; Test</label>
+            </value>
+            <value>
+                <fullName>Code Smell</fullName>
+                <default>false</default>
+                <label>Code Smell</label>
+            </value>
+            <value>
+                <fullName>Bad Practice</fullName>
+                <default>false</default>
+                <label>Bad Practice</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -1,0 +1,151 @@
+[
+  {
+    "engine": "pmd-custom",
+    "fileName": "/Users/lbuthman/Developer/IdeaProjects/iou-app/force-app/main/default/classes/AgentLeadCleanUpBatch.cls",
+    "violations": [
+      {
+        "line": "10",
+        "column": "14",
+        "endLine": "231",
+        "endColumn": "1",
+        "severity": 3,
+        "ruleName": "CognitiveComplexity",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#cognitivecomplexity",
+        "message": "\nThe class 'AgentLeadCleanUpBatch' has a total cognitive complexity of 124 (highest 124), current threshold is 50\n"
+      },
+      {
+        "line": "24",
+        "column": "14",
+        "endLine": "216",
+        "endColumn": "2",
+        "severity": 3,
+        "ruleName": "NcssMethodCount",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#ncssmethodcount",
+        "message": "\nThe method 'execute()' has an NCSS line count of 127\n"
+      },
+      {
+        "line": "24",
+        "column": "14",
+        "endLine": "216",
+        "endColumn": "2",
+        "severity": 3,
+        "ruleName": "CognitiveComplexity",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#cognitivecomplexity",
+        "message": "\nThe method 'execute(Database.BatchableContext, List<Lead>)' has a cognitive complexity of 124, current threshold is 15\n"
+      },
+      {
+        "line": "24",
+        "column": "14",
+        "endLine": "216",
+        "endColumn": "2",
+        "severity": 3,
+        "ruleName": "CyclomaticComplexity",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#cyclomaticcomplexity",
+        "message": "\nThe method 'execute(Database.BatchableContext, List<Lead>)' has a cyclomatic complexity of 40.\n"
+      },
+      {
+        "line": "87",
+        "column": "7",
+        "endLine": "87",
+        "endColumn": "8",
+        "severity": 3,
+        "ruleName": "AvoidDeeplyNestedIfStmts",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#avoiddeeplynestedifstmts",
+        "message": "\nDeeply nested if..then statements are hard to read\n"
+      },
+      {
+        "line": "102",
+        "column": "7",
+        "endLine": "102",
+        "endColumn": "8",
+        "severity": 3,
+        "ruleName": "AvoidDeeplyNestedIfStmts",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#avoiddeeplynestedifstmts",
+        "message": "\nDeeply nested if..then statements are hard to read\n"
+      },
+      {
+        "line": "113",
+        "column": "7",
+        "endLine": "113",
+        "endColumn": "8",
+        "severity": 3,
+        "ruleName": "AvoidDeeplyNestedIfStmts",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#avoiddeeplynestedifstmts",
+        "message": "\nDeeply nested if..then statements are hard to read\n"
+      },
+      {
+        "line": "124",
+        "column": "7",
+        "endLine": "124",
+        "endColumn": "8",
+        "severity": 3,
+        "ruleName": "AvoidDeeplyNestedIfStmts",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#avoiddeeplynestedifstmts",
+        "message": "\nDeeply nested if..then statements are hard to read\n"
+      },
+      {
+        "line": "136",
+        "column": "7",
+        "endLine": "136",
+        "endColumn": "8",
+        "severity": 3,
+        "ruleName": "AvoidDeeplyNestedIfStmts",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#avoiddeeplynestedifstmts",
+        "message": "\nDeeply nested if..then statements are hard to read\n"
+      },
+      {
+        "line": "156",
+        "column": "7",
+        "endLine": "156",
+        "endColumn": "8",
+        "severity": 3,
+        "ruleName": "AvoidDeeplyNestedIfStmts",
+        "category": "Design",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#avoiddeeplynestedifstmts",
+        "message": "\nDeeply nested if..then statements are hard to read\n"
+      },
+      {
+        "line": "170",
+        "column": "16",
+        "endLine": "170",
+        "endColumn": "20",
+        "severity": 3,
+        "ruleName": "AvoidDebugStatements",
+        "category": "Performance",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_performance.html#avoiddebugstatements",
+        "message": "\nAvoid debug statements since they impact on performance\n"
+      },
+      {
+        "line": "223",
+        "column": "14",
+        "endLine": "223",
+        "endColumn": "19",
+        "severity": 3,
+        "ruleName": "EmptyStatementBlock",
+        "category": "Error Prone",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_errorprone.html#emptystatementblock",
+        "message": "\nAvoid empty block statements.\n"
+      },
+      {
+        "line": "5",
+        "column": "49",
+        "endLine": "8",
+        "endColumn": "7",
+        "severity": 3,
+        "ruleName": "ApexUnitTestClassShouldHaveAsserts",
+        "category": "Best Practices",
+        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_bestpractices.html#apexunittestclassshouldhaveasserts",
+        "message": "\nApex unit tests should System.assert() or assertEquals() or assertNotEquals()\n"
+      }
+    ]
+  }
+]
