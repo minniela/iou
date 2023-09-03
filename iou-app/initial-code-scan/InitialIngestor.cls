@@ -62,7 +62,7 @@ public with sharing class InitialIngestor {
             Reference__c = violationCache.url,
             Message__c = violationCache.message.trim(),
             Starting_Line__c = Integer.valueOf(violationCache.line),
-            End_Line__c = Integer.valueOf(violationCache.endLine),
+            Ending_Line__c = Integer.valueOf(violationCache.endLine),
             Apex_Class__c = apexClass.Id
         );
         if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
@@ -73,7 +73,52 @@ public with sharing class InitialIngestor {
     }
 
     private static void calculateViolationsInApexClass(Map<Id, List<Apex_Violation__c>> violationListByApexClassId) {
-        
+        List<Apex_Class__c> apexClassesToUpdate = new List<Apex_Class__c>();
+        for (Id apexClassId : violationListByApexClassId.keySet()) {
+            Apex_Class__c apexClass = configureClassViolations(apexClassId);
+            List<Apex_Violation__c> violations = violationListByApexClassId.get(apexClassId);
+
+            countViolationsForClass(apexClass, violations);
+            apexClassesToUpdate.add(apexClass);
+        }
+
+        update apexClassesToUpdate;
+    }
+
+    private static Apex_Class__c configureClassViolations(Id apexClassId) {
+        return new Apex_Class__c(
+            Id = apexClassId,
+            Cost_to_Understand_Maintain__c = 0,
+            Cost_to_Change_Test__c = 0,
+            Code_Smells__c = 0,
+            Bad_Practices__c = 0,
+            Ineffectual_Tests__c = 0
+        );
+    }
+
+    private static void countViolationsForClass(Apex_Class__c apexClass, List<Apex_Violation__c> violations) {
+        for (Apex_Violation__c violation : violations) {
+            switch on violation.Category__c {
+                when 'Cost to Understand & Maintain' {
+                    apexClass.Cost_to_Understand_Maintain__c += violation.Complexity_Score__c;
+                    if (apexClass.Name == violation.Method__c) {
+                        apexClass.File_Length__c = violation.Ending_Line__c - violation.Starting_Line__c;
+                    }
+                }
+                when 'Cost to Change & Test' {
+                    apexClass.Cost_to_Change_Test__c += violation.Complexity_Score__c;
+                }
+                when 'Code Smell' {
+                    apexClass.Code_Smells__c += 1;
+                }
+                when 'Bad Practice' {
+                    apexClass.Bad_Practices__c += 1;
+                }
+                when 'Ineffectual Test' {
+                    apexClass.Ineffectual_Tests__c += 1;
+                }
+            }
+        }
     }
 
     @TestVisible
