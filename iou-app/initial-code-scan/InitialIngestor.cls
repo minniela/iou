@@ -5,63 +5,64 @@ public with sharing class InitialIngestor {
         if (String.isBlank(staticResource)) { staticResource = 'initialCodeScan.json'; }
 
         StaticResource pmdScan = [SELECT Body FROM StaticResource WHERE Name = :staticResource LIMIT 1];
-        List<ApexClass> filesCache = (List<ApexClass>) JSON.deserialize(pmdScan.Body.toString(), List<ApexClass>.class);
+        List<ApexClass> apexClassCache = (List<ApexClass>) JSON.deserialize(pmdScan.Body.toString(), List<ApexClass>.class);
 
-        Map<String, Id> fileToPMDFileId = createPMDFiles(filesCache);
-        createPMDViolations(filesCache, fileToPMDFileId);
+        Map<String, Id> apexNameByApexClassId = createApexClasses(apexClassCache);
+        createApexViolations(apexClassCache, apexNameByApexClassId);
     }
 
-    public static void cleanResults() {
-        List<Apex_Class__c> tphClasses = [SELECT Id FROM Apex_Class__c];
-        delete tphClasses;
+    @AuraEnabled
+    public static void startOver() {
+        List<Apex_Class__c> apexClass = [SELECT Id FROM Apex_Class__c];
+        delete apexClass;
     }
 
-//todo: change return type or adjust to allow setting starting violation
-    private static Map<String, Id> createPMDFiles(List<ApexClass> filesCache) {
-        List<Apex_Class__c> tphClasses = new List<Apex_Class__c>();
+    //todo: change return type or adjust to allow setting starting violation
+    private static Map<String, Id> createApexClasses(List<ApexClass> filesCache) {
+        List<Apex_Class__c> apexClasses = new List<Apex_Class__c>();
         for (ApexClass fileCache : filesCache) {
             String fileName = parseFileName(fileCache.fileName);
-            Apex_Class__c pmdFile = new Apex_Class__c(
+            Apex_Class__c apexClass = new Apex_Class__c(
                 Name = fileName
             );
-            tphClasses.add(pmdFile);
+            apexClasses.add(apexClass);
         }
         //todo: defer the insert to allow setting the starting violation
-        insert tphClasses;
+        insert apexClasses;
 
-        Map<String, Id> fileToIdMap = new Map<String, Id>();
-        for (Apex_Class__c pmdFile : tphClasses) {
-            fileToIdMap.put(pmdFile.Name, pmdFile.Id);
+        Map<String, Id> classNamesById = new Map<String, Id>();
+        for (Apex_Class__c apexClass : apexClasses) {
+            classNamesById.put(apexClass.Name, apexClass.Id);
         }
-        return fileToIdMap;
+        return classNamesById;
     }
 
-    private static void createPMDViolations(List<ApexClass> filesCache, Map<String, Id> pmdFileMap) {
-        List<Apex_Violation__c> violations = new List<Apex_Violation__c>();
-        for (ApexClass fileCache : filesCache) {
-            String fileNameKey = parseFileName(fileCache.fileName);
-            Id pmdFileId = pmdFileMap.get(fileNameKey);
+    private static void createApexViolations(List<ApexClass> apexClassCache, Map<String, Id> apexClassNamesById) {
+        List<Apex_Violation__c> apexViolations = new List<Apex_Violation__c>();
+        for (ApexClass classCache : apexClassCache) {
+            String fileNameKey = parseFileName(classCache.fileName);
+            Id apexClassId = apexClassNamesById.get(fileNameKey);
 
-            for (ApexViolation violationCache: fileCache.violations) {
-                Apex_Violation__c violation = new Apex_Violation__c(
+            for (ApexViolation violationCache: classCache.violations) {
+                Apex_Violation__c apexViolation = new Apex_Violation__c(
                     Rule__c = violationCache.ruleName,
                     Category__c = violationCache.category,
                     Reference__c = violationCache.url,
                     Message__c = violationCache.message.trim(),
-                    Apex_Class__c = pmdFileId
+                    Apex_Class__c = apexClassId
                 );
                 if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
-                    violation.Method__c = parseMethodName(violationCache.message);
-                    violation.Complexity_Score__c = parseComplexityScore(violationCache.message);
+                    apexViolation.Method__c = parseMethodName(violationCache.message);
+                    apexViolation.Complexity_Score__c = parseComplexityScore(violationCache.message);
                 }
-                violations.add(violation);
+                apexViolations.add(apexViolation);
 
                 //todo: add violation calculation to Apex Class
             }
         }
 
         //todo: insert apexClasses
-        insert violations;
+        insert apexViolations;
     }
 
     @TestVisible
