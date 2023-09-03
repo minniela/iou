@@ -108,5 +108,7 @@ public with sharing class InitialIngestor {
         public String message;
         public String category;
         public String url;
+        public String line;
+        public String endLine;
     }
 }
