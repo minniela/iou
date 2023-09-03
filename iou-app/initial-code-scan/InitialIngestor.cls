@@ -2,7 +2,7 @@ public with sharing class InitialIngestor {
 
     @AuraEnabled
     public static void initiate(String staticResource) {
-        if (String.isBlank(staticResource)) { staticResource = 'initialCodeScan.json'; }
+        if (String.isBlank(staticResource)) { staticResource = 'initialCodeScan'; }
 
         StaticResource pmdScan = [SELECT Body FROM StaticResource WHERE Name = :staticResource LIMIT 1];
         List<ApexClass> apexClassCache = (List<ApexClass>) JSON.deserialize(pmdScan.Body.toString(), List<ApexClass>.class);
