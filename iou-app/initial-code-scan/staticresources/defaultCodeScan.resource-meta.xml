@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>application/json</contentType>
+    <description>Used for testing only. If deleted, IOU related tests may fail. Updates &amp; upgrades will put this data in place once again.</description>
+</StaticResource>
