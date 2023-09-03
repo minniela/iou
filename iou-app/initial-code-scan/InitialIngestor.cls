@@ -18,10 +18,10 @@ public with sharing class InitialIngestor {
         createApexViolations(apexClassCache, apexClassesByName);
     }
 
-    private static Map<String, Apex_Class__c> createApexClasses(List<ApexClass> fileCaches) {
+    private static Map<String, Apex_Class__c> createApexClasses(List<ApexClass> apexClassCaches) {
         Map<String, Apex_Class__c> apexClassesByName = new Map<String, Apex_Class__c>();
-        for (ApexClass fileCache : fileCaches) {
-            String fileName = parseFileName(fileCache.fileName);
+        for (ApexClass classCache : apexClassCaches) {
+            String fileName = parseFileName(classCache.fileName);
             Apex_Class__c apexClass = new Apex_Class__c(
                 Name = fileName
             );
@@ -31,9 +31,9 @@ public with sharing class InitialIngestor {
         return apexClassesByName;
     }
 
-    private static void createApexViolations(List<ApexClass> apexClassCache, Map<String, Apex_Class__c> apexClassesByName) {
+    private static void createApexViolations(List<ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByName) {
         List<Apex_Violation__c> apexViolations = new List<Apex_Violation__c>();
-        for (ApexClass classCache : apexClassCache) {
+        for (ApexClass classCache : apexClassCaches) {
             String fileNameKey = parseFileName(classCache.fileName);
             Apex_Class__c apexClass = apexClassesByName.get(fileNameKey);
 
