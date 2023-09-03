@@ -14,35 +14,28 @@ public with sharing class InitialIngestor {
         StaticResource pmdScan = [SELECT Body FROM StaticResource WHERE Name = :staticResource LIMIT 1];
         List<ApexClass> apexClassCache = (List<ApexClass>) JSON.deserialize(pmdScan.Body.toString(), List<ApexClass>.class);
 
-        Map<String, Id> apexNameByApexClassId = createApexClasses(apexClassCache);
-        createApexViolations(apexClassCache, apexNameByApexClassId);
+        Map<String, Apex_Class__c> apexClassesByName = createApexClasses(apexClassCache);
+        createApexViolations(apexClassCache, apexClassesByName);
     }
 
-    //todo: change return type or adjust to allow setting starting violation
-    private static Map<String, Id> createApexClasses(List<ApexClass> filesCache) {
-        List<Apex_Class__c> apexClasses = new List<Apex_Class__c>();
-        for (ApexClass fileCache : filesCache) {
+    private static Map<String, Apex_Class__c> createApexClasses(List<ApexClass> fileCaches) {
+        Map<String, Apex_Class__c> apexClassesByName = new Map<String, Apex_Class__c>();
+        for (ApexClass fileCache : fileCaches) {
             String fileName = parseFileName(fileCache.fileName);
             Apex_Class__c apexClass = new Apex_Class__c(
                 Name = fileName
             );
-            apexClasses.add(apexClass);
+            apexClassesByName.put(apexClass.Name, apexClass);
         }
-        //todo: defer the insert to allow setting the starting violation
-        insert apexClasses;
-
-        Map<String, Id> classNamesById = new Map<String, Id>();
-        for (Apex_Class__c apexClass : apexClasses) {
-            classNamesById.put(apexClass.Name, apexClass.Id);
-        }
-        return classNamesById;
+        insert apexClassesByName.values();
+        return apexClassesByName;
     }
 
-    private static void createApexViolations(List<ApexClass> apexClassCache, Map<String, Id> apexClassNamesById) {
+    private static void createApexViolations(List<ApexClass> apexClassCache, Map<String, Apex_Class__c> apexClassesByName) {
         List<Apex_Violation__c> apexViolations = new List<Apex_Violation__c>();
         for (ApexClass classCache : apexClassCache) {
             String fileNameKey = parseFileName(classCache.fileName);
-            Id apexClassId = apexClassNamesById.get(fileNameKey);
+            Apex_Class__c apexClass = apexClassesByName.get(fileNameKey);
 
             for (ApexViolation violationCache: classCache.violations) {
                 Apex_Violation__c apexViolation = new Apex_Violation__c(
@@ -50,7 +43,7 @@ public with sharing class InitialIngestor {
                     Category__c = CategoryTranslatorService.translate(violationCache.category),
                     Reference__c = violationCache.url,
                     Message__c = violationCache.message.trim(),
-                    Apex_Class__c = apexClassId
+                    Apex_Class__c = apexClass.Id
                 );
                 if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
                     apexViolation.Method__c = parseMethodName(violationCache.message);
@@ -61,8 +54,6 @@ public with sharing class InitialIngestor {
                 //todo: add violation calculation to Apex Class
             }
         }
-
-        //todo: insert apexClasses
         insert apexViolations;
     }
 
