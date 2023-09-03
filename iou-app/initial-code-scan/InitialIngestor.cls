@@ -58,7 +58,7 @@ public with sharing class InitialIngestor {
     private static Apex_Violation__c configureViolation(ApexViolation violationCache, Apex_Class__c apexClass) {
         Apex_Violation__c apexViolation = new Apex_Violation__c(
             Rule__c = violationCache.ruleName,
-            Category__c = CategoryTranslatorService.translate(violationCache.category),
+            Category__c = CategoryTranslatorService.translate(violationCache.ruleName),
             Reference__c = violationCache.url,
             Message__c = violationCache.message.trim(),
             Starting_Line__c = Integer.valueOf(violationCache.line),
@@ -114,7 +114,7 @@ public with sharing class InitialIngestor {
                 when 'Bad Practice' {
                     apexClass.Bad_Practices__c += 1;
                 }
-                when 'Ineffectual Test' {
+                when 'Ineffectual Tests' {
                     apexClass.Ineffectual_Tests__c += 1;
                 }
             }
