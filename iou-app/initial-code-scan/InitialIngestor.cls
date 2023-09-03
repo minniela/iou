@@ -49,6 +49,8 @@ public with sharing class InitialIngestor {
                     apexViolation.Method__c = parseMethodName(violationCache.message);
                     apexViolation.Complexity_Score__c = parseComplexityScore(violationCache.message);
                 }
+                //todo: if CognitiveComplexity on the class level, then calculate file length
+                
                 apexViolations.add(apexViolation);
 
                 //todo: add violation calculation to Apex Class
