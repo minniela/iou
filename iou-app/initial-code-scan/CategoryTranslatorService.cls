@@ -23,15 +23,15 @@ public with sharing class CategoryTranslatorService {
     }
 
     private static Boolean isIneffectualTest(String pmdCategory) {
-        return pmdCategory.equals('ApexUnitTestClassShouldHaveAsserts');
+        return pmdCategory == 'ApexUnitTestClassShouldHaveAsserts';
     }
 
     private static Boolean isDifficultToMaintain(String pmdCategory) {
-        return pmdCategory.equals('CognitiveComplexity');
+        return pmdCategory == 'CognitiveComplexity';
     }
 
     private static Boolean isDifficultToTest(String pmdCategory) {
-        return pmdCategory.equals('CyclomaticComplexity');
+        return pmdCategory == 'CyclomaticComplexity';
     }
 
     private static Boolean isCodeSmell(String pmdCategory) {
