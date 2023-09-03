@@ -46,7 +46,7 @@ public with sharing class InitialIngestor {
             for (ApexViolation violationCache: classCache.violations) {
                 Apex_Violation__c apexViolation = new Apex_Violation__c(
                     Rule__c = violationCache.ruleName,
-                    Category__c = violationCache.category,
+                    Category__c = parseCategory(violationCache.category),
                     Reference__c = violationCache.url,
                     Message__c = violationCache.message.trim(),
                     Apex_Class__c = apexClassId
@@ -70,6 +70,11 @@ public with sharing class InitialIngestor {
         Integer indexOfFinalDirectory = unformattedFileName.lastIndexOf('/');
         String trimmedFileName = unformattedFileName.substring(indexOfFinalDirectory + 1);
         return trimmedFileName.remove('.cls"');
+    }
+
+    @TestVisible
+    private static String parseCategory(String pmdCategory) {
+        return 'Ineffectual Tests';
     }
 
     @TestVisible
