@@ -15,8 +15,8 @@ public with sharing class InitialIngestor {
         List<ApexClass> apexClassCache = (List<ApexClass>) JSON.deserialize(pmdScan.Body.toString(), List<ApexClass>.class);
 
         Map<String, Apex_Class__c> apexClassesByName = createApexClasses(apexClassCache);
-        Map<Id, List<Apex_Violation__c>> violationListByApexClassId = createApexViolations(apexClassCache, apexClassesByName);
-        calculateViolationsInApexClass(violationListByApexClassId);
+        Map<Apex_Class__c, List<Apex_Violation__c>> violationListByApexClass = createApexViolations(apexClassCache, apexClassesByName);
+        calculateViolationsInApexClass(violationListByApexClass);
     }
 
     private static Map<String, Apex_Class__c> createApexClasses(List<ApexClass> apexClassCaches) {
@@ -32,11 +32,11 @@ public with sharing class InitialIngestor {
         return apexClassesByName;
     }
 
-    private static Map<Id, List<Apex_Violation__c>> createApexViolations(
+    private static Map<Apex_Class__c, List<Apex_Violation__c>> createApexViolations(
         List<ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByName
     ) {
         List<Apex_Violation__c> apexViolations = new List<Apex_Violation__c>();
-        Map<Id, List<Apex_Violation__c>> violationListByApexClassId = new Map<Id, List<Apex_Violation__c>>();
+        Map<Apex_Class__c, List<Apex_Violation__c>> violationListByApexClass = new Map<Apex_Class__c, List<Apex_Violation__c>>();
         for (ApexClass classCache : apexClassCaches) {
             String fileNameKey = parseFileName(classCache.fileName);
             Apex_Class__c apexClass = apexClassesByName.get(fileNameKey);
@@ -45,14 +45,14 @@ public with sharing class InitialIngestor {
                 Apex_Violation__c apexViolation = configureViolation(violationCache, apexClass);
                 apexViolations.add(apexViolation);
 
-                if (!violationListByApexClassId.containsKey(apexClass.Id)) {
-                    violationListByApexClassId.put(apexClass.Id, new List<Apex_Violation__c>());
+                if (!violationListByApexClass.containsKey(apexClass)) {
+                    violationListByApexClass.put(apexClass, new List<Apex_Violation__c>());
                 }
-                violationListByApexClassId.get(apexClass.Id).add(apexViolation);
+                violationListByApexClass.get(apexClass).add(apexViolation);
             }
         }
         insert apexViolations;
-        return violationListByApexClassId;
+        return violationListByApexClass;
     }
 
     private static Apex_Violation__c configureViolation(ApexViolation violationCache, Apex_Class__c apexClass) {
@@ -72,22 +72,22 @@ public with sharing class InitialIngestor {
         return apexViolation;
     }
 
-    private static void calculateViolationsInApexClass(Map<Id, List<Apex_Violation__c>> violationListByApexClassId) {
+    private static void calculateViolationsInApexClass(Map<Apex_Class__c, List<Apex_Violation__c>> violationListByApexClassId) {
         List<Apex_Class__c> apexClassesToUpdate = new List<Apex_Class__c>();
-        for (Id apexClassId : violationListByApexClassId.keySet()) {
-            Apex_Class__c apexClass = configureClassViolations(apexClassId);
-            List<Apex_Violation__c> violations = violationListByApexClassId.get(apexClassId);
+        for (Apex_Class__c apexClass : violationListByApexClassId.keySet()) {
+            Apex_Class__c apexClassCopy = configureClassViolations(apexClass);
+            List<Apex_Violation__c> violations = violationListByApexClassId.get(apexClass);
 
-            countViolationsForClass(apexClass, violations);
-            apexClassesToUpdate.add(apexClass);
+            countViolationsForClass(apexClassCopy, violations);
+            apexClassesToUpdate.add(apexClassCopy);
         }
 
         update apexClassesToUpdate;
     }
 
-    private static Apex_Class__c configureClassViolations(Id apexClassId) {
+    private static Apex_Class__c configureClassViolations(Apex_Class__c apexClass) {
         return new Apex_Class__c(
-            Id = apexClassId,
+            Id = apexClass.Id,
             Cost_to_Understand_Maintain__c = 0,
             Cost_to_Change_Test__c = 0,
             Code_Smells__c = 0,
