@@ -16,7 +16,7 @@ public with sharing class InitialIngestor {
 
         Map<String, Apex_Class__c> apexClassesByName = createApexClasses(apexClassCache);
         Map<Id, List<Apex_Violation__c>> violationListByApexClassId = createApexViolations(apexClassCache, apexClassesByName);
-
+        calculateViolationsInApexClass(violationListByApexClassId);
     }
 
     private static Map<String, Apex_Class__c> createApexClasses(List<ApexClass> apexClassCaches) {
@@ -70,6 +70,10 @@ public with sharing class InitialIngestor {
             apexViolation.Complexity_Score__c = parseComplexityScore(violationCache.message);
         }
         return apexViolation;
+    }
+
+    private static void calculateViolationsInApexClass(Map<Id, List<Apex_Violation__c>> violationListByApexClassId) {
+        
     }
 
     @TestVisible
