@@ -88,6 +88,7 @@ public with sharing class InitialIngestor {
     private static Apex_Class__c configureClassViolations(Apex_Class__c apexClass) {
         return new Apex_Class__c(
             Id = apexClass.Id,
+            Name = apexClass.Name,
             Cost_to_Understand_Maintain__c = 0,
             Cost_to_Change_Test__c = 0,
             Code_Smells__c = 0,
@@ -125,7 +126,7 @@ public with sharing class InitialIngestor {
     private static String parseFileName(String unformattedFileName) {
         Integer indexOfFinalDirectory = unformattedFileName.lastIndexOf('/');
         String trimmedFileName = unformattedFileName.substring(indexOfFinalDirectory + 1);
-        return trimmedFileName.remove('.cls"');
+        return trimmedFileName.remove('.cls').remove('"');
     }
 
     @TestVisible
