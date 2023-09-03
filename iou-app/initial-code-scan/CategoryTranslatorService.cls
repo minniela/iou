@@ -2,7 +2,7 @@ public with sharing class CategoryTranslatorService {
 
     public static String translate(String pmdCategory) {
         String translatedCategory = '';
-        
+
         if (isIneffectualTest(pmdCategory)) {
             translatedCategory = 'Ineffectual Tests';
         }
@@ -51,6 +51,6 @@ public with sharing class CategoryTranslatorService {
             'AvoidDirectAccessTriggerMap', 'AvoidLogicInTrigger', 'ApexUnitTestShouldNotUseSeeAllDataTrue',
             'ApexUnitTestMethodShouldHaveIsTestAnnotation'
         };
-        return badPractices.contains(pmdCategory``);
+        return badPractices.contains(pmdCategory);
     }
 }
