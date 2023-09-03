@@ -43,14 +43,15 @@ public with sharing class InitialIngestor {
                     Category__c = CategoryTranslatorService.translate(violationCache.category),
                     Reference__c = violationCache.url,
                     Message__c = violationCache.message.trim(),
+                    Starting_Line__c = Integer.valueOf(violationCache.line),
+                    End_Line__c = Integer.valueOf(violationCache.endLine),
                     Apex_Class__c = apexClass.Id
                 );
                 if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
                     apexViolation.Method__c = parseMethodName(violationCache.message);
                     apexViolation.Complexity_Score__c = parseComplexityScore(violationCache.message);
                 }
-                //todo: if CognitiveComplexity on the class level, then calculate file length
-                
+
                 apexViolations.add(apexViolation);
 
                 //todo: add violation calculation to Apex Class
