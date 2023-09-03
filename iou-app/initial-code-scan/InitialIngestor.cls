@@ -3,8 +3,9 @@ public with sharing class InitialIngestor {
     @AuraEnabled
     public static void initiate(String staticResource) {
         if (String.isBlank(staticResource)) { staticResource = 'initialCodeScan.json'; }
+
         StaticResource pmdScan = [SELECT Body FROM StaticResource WHERE Name = :staticResource LIMIT 1];
-        List<TPHClass> filesCache = (List<TPHClass>) JSON.deserialize(pmdScan.Body.toString(), List<TPHClass>.class);
+        List<ApexClass> filesCache = (List<ApexClass>) JSON.deserialize(pmdScan.Body.toString(), List<ApexClass>.class);
 
         Map<String, Id> fileToPMDFileId = createPMDFiles(filesCache);
         createPMDViolations(filesCache, fileToPMDFileId);
@@ -16,9 +17,9 @@ public with sharing class InitialIngestor {
     }
 
 //todo: change return type or adjust to allow setting starting violation
-    private static Map<String, Id> createPMDFiles(List<TPHClass> filesCache) {
+    private static Map<String, Id> createPMDFiles(List<ApexClass> filesCache) {
         List<Apex_Class__c> tphClasses = new List<Apex_Class__c>();
-        for (TPHClass fileCache : filesCache) {
+        for (ApexClass fileCache : filesCache) {
             String fileName = parseFileName(fileCache.fileName);
             Apex_Class__c pmdFile = new Apex_Class__c(
                 Name = fileName
@@ -35,13 +36,13 @@ public with sharing class InitialIngestor {
         return fileToIdMap;
     }
 
-    private static void createPMDViolations(List<TPHClass> filesCache, Map<String, Id> pmdFileMap) {
+    private static void createPMDViolations(List<ApexClass> filesCache, Map<String, Id> pmdFileMap) {
         List<Apex_Violation__c> violations = new List<Apex_Violation__c>();
-        for (TPHClass fileCache : filesCache) {
+        for (ApexClass fileCache : filesCache) {
             String fileNameKey = parseFileName(fileCache.fileName);
             Id pmdFileId = pmdFileMap.get(fileNameKey);
 
-            for (Violations violationCache: fileCache.violations) {
+            for (ApexViolation violationCache: fileCache.violations) {
                 Apex_Violation__c violation = new Apex_Violation__c(
                     Rule__c = violationCache.ruleName,
                     Category__c = violationCache.category,
@@ -97,12 +98,12 @@ public with sharing class InitialIngestor {
         return score;
     }
 
-    public class TPHClass {
+    public class ApexClass {
         public String fileName;
-        public List<Violations> violations;
+        public List<ApexViolation> violations;
     }
 
-    public class Violations {
+    public class ApexViolation {
         public String ruleName;
         public String message;
         public String category;
