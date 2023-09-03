@@ -15,7 +15,8 @@ public with sharing class InitialIngestor {
         List<ApexClass> apexClassCache = (List<ApexClass>) JSON.deserialize(pmdScan.Body.toString(), List<ApexClass>.class);
 
         Map<String, Apex_Class__c> apexClassesByName = createApexClasses(apexClassCache);
-        createApexViolations(apexClassCache, apexClassesByName);
+        Map<Id, List<Apex_Violation__c>> violationListByApexClassId = createApexViolations(apexClassCache, apexClassesByName);
+
     }
 
     private static Map<String, Apex_Class__c> createApexClasses(List<ApexClass> apexClassCaches) {
@@ -31,33 +32,44 @@ public with sharing class InitialIngestor {
         return apexClassesByName;
     }
 
-    private static void createApexViolations(List<ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByName) {
+    private static Map<Id, List<Apex_Violation__c>> createApexViolations(
+        List<ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByName
+    ) {
         List<Apex_Violation__c> apexViolations = new List<Apex_Violation__c>();
+        Map<Id, List<Apex_Violation__c>> violationListByApexClassId = new Map<Id, List<Apex_Violation__c>>();
         for (ApexClass classCache : apexClassCaches) {
             String fileNameKey = parseFileName(classCache.fileName);
             Apex_Class__c apexClass = apexClassesByName.get(fileNameKey);
 
             for (ApexViolation violationCache: classCache.violations) {
-                Apex_Violation__c apexViolation = new Apex_Violation__c(
-                    Rule__c = violationCache.ruleName,
-                    Category__c = CategoryTranslatorService.translate(violationCache.category),
-                    Reference__c = violationCache.url,
-                    Message__c = violationCache.message.trim(),
-                    Starting_Line__c = Integer.valueOf(violationCache.line),
-                    End_Line__c = Integer.valueOf(violationCache.endLine),
-                    Apex_Class__c = apexClass.Id
-                );
-                if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
-                    apexViolation.Method__c = parseMethodName(violationCache.message);
-                    apexViolation.Complexity_Score__c = parseComplexityScore(violationCache.message);
-                }
-
+                Apex_Violation__c apexViolation = configureViolation(violationCache, apexClass);
                 apexViolations.add(apexViolation);
 
-                //todo: add violation calculation to Apex Class
+                if (!violationListByApexClassId.containsKey(apexClass.Id)) {
+                    violationListByApexClassId.put(apexClass.Id, new List<Apex_Violation__c>());
+                }
+                violationListByApexClassId.get(apexClass.Id).add(apexViolation);
             }
         }
         insert apexViolations;
+        return violationListByApexClassId;
+    }
+
+    private static Apex_Violation__c configureViolation(ApexViolation violationCache, Apex_Class__c apexClass) {
+        Apex_Violation__c apexViolation = new Apex_Violation__c(
+            Rule__c = violationCache.ruleName,
+            Category__c = CategoryTranslatorService.translate(violationCache.category),
+            Reference__c = violationCache.url,
+            Message__c = violationCache.message.trim(),
+            Starting_Line__c = Integer.valueOf(violationCache.line),
+            End_Line__c = Integer.valueOf(violationCache.endLine),
+            Apex_Class__c = apexClass.Id
+        );
+        if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
+            apexViolation.Method__c = parseMethodName(violationCache.message);
+            apexViolation.Complexity_Score__c = parseComplexityScore(violationCache.message);
+        }
+        return apexViolation;
     }
 
     @TestVisible
