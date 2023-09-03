@@ -33,7 +33,7 @@ private class InitialIngestor_Test {
         Assert.areEqual(1, apexClasses.size());
 
         List<Apex_Violation__c> apexViolations = [SELECT Id FROM Apex_Violation__c];
-        Assert.areEqual(11, apexViolations.size());
+        Assert.areEqual(13, apexViolations.size());
 
         Test.startTest();
         InitialIngestor.startOver();
