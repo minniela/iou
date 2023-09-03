@@ -1,6 +1,13 @@
 public with sharing class InitialIngestor {
 
     @AuraEnabled
+    public static void startOver() {
+        List<Apex_Class__c> apexClass = [SELECT Id FROM Apex_Class__c];
+        delete apexClass;
+        Database.emptyRecycleBin(apexClass);
+    }
+
+    @AuraEnabled
     public static void initiate(String staticResource) {
         if (String.isBlank(staticResource)) { staticResource = 'initialCodeScan'; }
 
@@ -9,12 +16,6 @@ public with sharing class InitialIngestor {
 
         Map<String, Id> apexNameByApexClassId = createApexClasses(apexClassCache);
         createApexViolations(apexClassCache, apexNameByApexClassId);
-    }
-
-    @AuraEnabled
-    public static void startOver() {
-        List<Apex_Class__c> apexClass = [SELECT Id FROM Apex_Class__c];
-        delete apexClass;
     }
 
     //todo: change return type or adjust to allow setting starting violation
