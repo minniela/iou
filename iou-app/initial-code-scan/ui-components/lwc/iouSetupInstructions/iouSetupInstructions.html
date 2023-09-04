@@ -1,2 +1,18 @@
 <template>
+  <lightning-card  title="IOU Setup Instructions">
+    <lightning-button label="Next Step"
+                      slot="actions"
+                      onclick={handleNextStep}
+                      class="slds-m-left_x-small">
+    </lightning-button>
+
+    <lightning-layout class="slds-align_absolute-center slds-p-bottom_small">
+      <lightning-layout-item class="slds-p-right_medium">
+        <div class="slds-text-heading_medium">{nextStepInstruction}</div>
+      </lightning-layout-item>
+      <lightning-layout-item class="slds-p-right_medium">
+        <div class="slds-text-font_monospace">sfdx plugins:install @salesforce/sfdx-scanner</div>
+      </lightning-layout-item>
+    </lightning-layout>
+  </lightning-card>
 </template>
