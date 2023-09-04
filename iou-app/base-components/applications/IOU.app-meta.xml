@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#685CCA</headerColor>
+        <logo>iou_2</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>An app to measure, analyze, and repay tech debt, generating many forms of value in the process.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>IOU</label>
+    <navType>Standard</navType>
+    <tabs>standard-AnalyticsDataManager</tabs>
+    <tabs>Apex_Class__c</tabs>
+    <tabs>Apex_Method__c</tabs>
+    <tabs>Apex_Violation__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>IOU_UtilityBar</utilityBar>
+</CustomApplication>
