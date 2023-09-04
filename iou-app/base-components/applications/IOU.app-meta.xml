@@ -19,5 +19,4 @@
     <tabs>Apex_Method__c</tabs>
     <tabs>Apex_Violation__c</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>IOU_UtilityBar</utilityBar>
 </CustomApplication>
