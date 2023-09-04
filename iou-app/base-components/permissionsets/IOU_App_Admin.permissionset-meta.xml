@@ -40,6 +40,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Apex_Class__c.Current_Violation_Count__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Apex_Class__c.File_Length__c</field>
         <readable>true</readable>
     </fieldPermissions>
