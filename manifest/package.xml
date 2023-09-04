@@ -2403,5 +2403,9 @@
         <members>IOU_App_Admin</members>
         <name>PermissionSet</name>
     </types>
+    <types>
+        <members>iou_logo</members>
+        <name>ContentAsset</name>
+    </types>
     <version>57.0</version>
 </Package>
