@@ -12,7 +12,9 @@ const getInstructions = () => {
         },
         {
             title: 'Run SFCA:',
-            instruction: 'sfdx scanner:run --format json --target "force-app" --outfile "scans/initialCodeScan.json" --pmdconfig "scans/level-0-tech-debt-ruleset.xml"',
+            instruction: '<div class="slds-text-font_monospace">' +
+                'sfdx scanner:run -f json -o scans/initialCodeScan.json -t force-app --pmdconfig level-0-tech-debt-ruleset.xml' +
+                '</div>',
             link: ''
         },
         {
