@@ -7,7 +7,7 @@ const getInstructions = () => {
         },
         {
             title: 'Install SFCA:',
-            instruction: 'sfdx plugins:install @salesforce/sfdx-scanner',
+            instruction: '<div class="slds-text-font_monospace">sfdx plugins:install @salesforce/sfdx-scanner</div>',
             link: ''
         },
         {
