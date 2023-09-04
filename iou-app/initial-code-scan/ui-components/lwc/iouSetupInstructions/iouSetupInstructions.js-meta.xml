@@ -4,4 +4,7 @@
   <description>provides the steps required to set the app up.</description>
   <isExposed>true</isExposed>
   <masterLabel>IOU Setup Instructions</masterLabel>
+  <targets>
+    <target>lightning__HomePage</target>
+  </targets>
 </LightningComponentBundle>
