@@ -24,6 +24,12 @@ export default class IouSetupInstructions extends LightningElement {
     }
 
     handlePopulateClick() {
-        
+        initializeApp({staticResource: ''})
+            .then(result => {
+
+            })
+            .catch(error => {
+
+            });
     }
 }
