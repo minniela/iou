@@ -10,7 +10,7 @@ private class InitialIngestor_Test {
 
         List<Apex_Class__c> apexClasses = [
             SELECT File_Length__c, Cost_to_Understand_Maintain__c, Cost_to_Change_Test__c, Code_Smells__c,
-                Bad_Practices__c, Ineffectual_Tests__c
+                Bad_Practices__c, Ineffectual_Tests__c, Starting_Violation_Count__c
             FROM Apex_Class__c
         ];
         Assert.areEqual(1, apexClasses.size());
@@ -22,6 +22,7 @@ private class InitialIngestor_Test {
         Assert.areEqual(8, apexClass.Code_Smells__c);
         Assert.areEqual(1, apexClass.Bad_Practices__c);
         Assert.areEqual(1, apexClass.Ineffectual_Tests__c);
+        Assert.areEqual(298, apexClass.Starting_Violation_Count__c);
 
         List<Apex_Violation__c> apexViolations = [SELECT Id FROM Apex_Violation__c];
         Assert.areEqual(13, apexViolations.size());
