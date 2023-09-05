@@ -1,4 +1,4 @@
-public with sharing class InitialIngestor {
+public without sharing class InitialIngestor {
 
     public static Response response = new Response(true, 'IOU Data Populated', 'all good!');
 
