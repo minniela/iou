@@ -1,5 +1,7 @@
 public with sharing class InitialIngestor {
 
+    public static Response response = new Response(true, 'IOU Data Populated', 'all good!');
+
     @AuraEnabled
     public static void startOver() {
         List<Apex_Class__c> apexClass = [SELECT Id FROM Apex_Class__c];
@@ -8,7 +10,7 @@ public with sharing class InitialIngestor {
     }
 
     @AuraEnabled
-    public static void initiate(String staticResource) {
+    public static Response initiate(String staticResource) {
         if (String.isBlank(staticResource)) { staticResource = 'initialCodeScan'; }
 
         StaticResource pmdScan = [SELECT Body FROM StaticResource WHERE Name = :staticResource LIMIT 1];
@@ -17,6 +19,8 @@ public with sharing class InitialIngestor {
         Map<String, Apex_Class__c> apexClassesByName = createApexClasses(apexClassCache);
         Map<Apex_Class__c, List<Apex_Violation__c>> violationListByApexClass = createApexViolations(apexClassCache, apexClassesByName);
         calculateViolationsInApexClass(violationListByApexClass);
+
+        return response;
     }
 
     private static Map<String, Apex_Class__c> createApexClasses(List<ApexClass> apexClassCaches) {
@@ -28,7 +32,14 @@ public with sharing class InitialIngestor {
             );
             apexClassesByName.put(apexClass.Name, apexClass);
         }
-        insert apexClassesByName.values();
+        try {
+            insert apexClassesByName.values();
+        }
+        catch (Exception ex) {
+            response.success = false;
+            response.title = 'Failed to Create Apex Classes';
+            response.message = ex.getMessage();
+        }
         return apexClassesByName;
     }
 
@@ -51,7 +62,14 @@ public with sharing class InitialIngestor {
                 violationListByApexClass.get(apexClass).add(apexViolation);
             }
         }
-        insert apexViolations;
+        try {
+            insert apexViolations;
+        }
+        catch (Exception ex) {
+            response.success = false;
+            response.title = 'Failed to Create Apex Violations';
+            response.message = ex.getMessage();
+        }
         return violationListByApexClass;
     }
 
@@ -81,8 +99,14 @@ public with sharing class InitialIngestor {
             countViolationsForClass(apexClassCopy, violations);
             apexClassesToUpdate.add(apexClassCopy);
         }
-
-        update apexClassesToUpdate;
+        try {
+            update apexClassesToUpdate;
+        }
+        catch (Exception ex) {
+            response.success = false;
+            response.title = 'Failed to Calculate Apex Class Violations';
+            response.message = ex.getMessage();
+        }
     }
 
     private static Apex_Class__c configureClassViolations(Apex_Class__c apexClass) {
@@ -168,5 +192,20 @@ public with sharing class InitialIngestor {
         public String url;
         public String line;
         public String endLine;
+    }
+
+    public class Response {
+        @AuraEnabled
+        public Boolean success;
+        @AuraEnabled
+        public String title;
+        @AuraEnabled
+        public String message;
+
+        public Response(Boolean success, String title, String message) {
+            this.success = success;
+            this.title = title;
+            this.message = message;
+        }
     }
 }
