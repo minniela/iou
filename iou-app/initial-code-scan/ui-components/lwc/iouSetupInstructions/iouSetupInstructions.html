@@ -13,6 +13,9 @@
       </lightning-formatted-url>
     </template>
     <template if:false={hasLink}>
+      <div if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+      </div>
       <lightning-button label="Populate IOU" slot="footer" variant="brand" onclick={handlePopulateClick}>
       </lightning-button>
     </template>

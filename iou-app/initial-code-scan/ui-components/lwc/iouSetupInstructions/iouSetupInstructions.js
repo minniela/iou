@@ -11,6 +11,7 @@ export default class IouSetupInstructions extends LightningElement {
     messageContext;
 
     @track hasLink = true;
+    @track showSpinner = false;
 
     nextStepIndex = 0
     nextStepTitle = getInstructions()[this.nextStepIndex].title;
@@ -30,8 +31,8 @@ export default class IouSetupInstructions extends LightningElement {
     }
 
     handlePopulateClick() {
-        //todo: add spinner
         //todo: add support for static resource name input
+        this.showSpinner = true;
         const scanFileName = 'defaultCodeScan';
         initializeApp({staticResource: scanFileName})
             .then(result => {
@@ -45,6 +46,9 @@ export default class IouSetupInstructions extends LightningElement {
             })
             .catch(error => {
                 console.log(JSON.stringify(error));
+            })
+            .finally(() => {
+               this.showSpinner = false;
             });
     }
 }
