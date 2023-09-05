@@ -4,7 +4,7 @@
     <description>This is only calculated when the class has a Cognitive Complexity violation. It is used to understand the weight of the violation.</description>
     <externalId>false</externalId>
     <label>File Length</label>
-    <precision>6</precision>
+    <precision>9</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>

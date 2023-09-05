@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <inlineHelpText>The total count of Bad Practice violations. See the documentation for the mapping of PMD Rules to Bad Practice in &quot;Level 0 Tech Debt Ruleset&quot;</inlineHelpText>
     <label>Bad Practices</label>
-    <precision>3</precision>
+    <precision>6</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>

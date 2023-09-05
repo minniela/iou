@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <inlineHelpText>The total count of Code Smell violations. See the documentation for the mapping of PMD Rules to Code Smells in &quot;Level 0 Tech Debt Ruleset&quot;</inlineHelpText>
     <label>Code Smells</label>
-    <precision>3</precision>
+    <precision>6</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>

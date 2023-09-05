@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <inlineHelpText>The total count of violations before this class was improved. Derived by adding Code Smells, Bad Practices, Cost to Change &amp; Test, Cost to Understand &amp; Maintain, and Ineffectual Tests at the time of initialization.</inlineHelpText>
     <label>Starting Violation Count</label>
-    <precision>3</precision>
+    <precision>9</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>
