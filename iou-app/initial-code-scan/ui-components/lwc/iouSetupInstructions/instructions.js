@@ -1,4 +1,5 @@
 const getInstructions = () => {
+    const hostname = window.location.hostname;
     return [
         {
             title: 'Download the Ruleset',
@@ -28,8 +29,9 @@ const getInstructions = () => {
         },
         {
             title: 'Upload the JSON',
-            instruction: '',
-            link: ''
+            instruction: 'navigate to your instance setup Static Resource page',
+            link: 'https://' + hostname + '/lightning/setup/StaticResources/home',
+            linkText: "Setup Static Resource"
         },
         {
             title: 'Initialize the App',
