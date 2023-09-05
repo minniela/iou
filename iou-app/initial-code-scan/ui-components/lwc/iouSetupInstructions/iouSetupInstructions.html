@@ -8,7 +8,13 @@
       </lightning-layout-item>
     </lightning-layout>
 
-    <lightning-formatted-url slot="footer" value={nextStepLink} label={nextStepLinkText} target="_blank">
-    </lightning-formatted-url>
+    <template if:true={hasLink}>
+      <lightning-formatted-url slot="footer" value={nextStepLink} label={nextStepLinkText} target="_blank">
+      </lightning-formatted-url>
+    </template>
+    <template if:false={hasLink}>
+      <lightning-button label="Populate IOU" slot="footer" variant="brand" onclick={handlePopulateClick}>
+      </lightning-button>
+    </template>
   </lightning-card>
 </template>
