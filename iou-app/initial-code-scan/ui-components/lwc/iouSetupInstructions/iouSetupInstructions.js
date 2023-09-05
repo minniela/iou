@@ -14,5 +14,7 @@ export default class IouSetupInstructions extends LightningElement {
         const nextStep = getInstructions()[this.nextStepIndex];
         this.nextStepTitle = nextStep.title;
         this.nextStepInstruction = nextStep.instruction;
+        this.nextStepLink = nextStep.link;
+        this.nextStepLinkText = nextStep.linkText;
     }
 }
