@@ -10,6 +10,7 @@ export default class IouSetupInstructions extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
+    @track staticResource = 'initialCodeScan';
     @track hasLink = true;
     @track showSpinner = false;
 
@@ -30,11 +31,13 @@ export default class IouSetupInstructions extends LightningElement {
         this.nextStepLinkText = nextStep.linkText;
     }
 
+    handleStaticResourceInput(event) {
+        this.staticResource = event.detail.value;
+    }
+
     handlePopulateClick() {
-        //todo: add support for static resource name input
         this.showSpinner = true;
-        const scanFileName = 'defaultCodeScan';
-        initializeApp({staticResource: scanFileName})
+        initializeApp({staticResource: this.staticResource})
             .then(result => {
                 if (result.success) {
                     publish(this.messageContext, IOU_POPULATED);

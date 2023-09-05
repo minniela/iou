@@ -8,16 +8,20 @@
       </lightning-layout-item>
     </lightning-layout>
 
-    <template if:true={hasLink}>
-      <lightning-formatted-url slot="footer" value={nextStepLink} label={nextStepLinkText} target="_blank">
+    <div if:true={hasLink} slot="footer">
+      <lightning-formatted-url value={nextStepLink} label={nextStepLinkText} target="_blank">
       </lightning-formatted-url>
-    </template>
-    <template if:false={hasLink}>
-      <div if:true={showSpinner}>
-        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
-      </div>
+    </div>
+    <div if:false={hasLink} slot="footer">
       <lightning-button label="Populate IOU" slot="footer" variant="brand" onclick={handlePopulateClick}>
       </lightning-button>
-    </template>
+      <lightning-input type="text" label="If you didn't go with the default name, input it here, you rogue."
+                       placeholder="initialCodeScan" value={staticResource} onchange={handleStaticResourceInput}
+      ></lightning-input>
+    </div>
+
+    <div if:true={showSpinner}>
+      <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </div>
   </lightning-card>
 </template>
