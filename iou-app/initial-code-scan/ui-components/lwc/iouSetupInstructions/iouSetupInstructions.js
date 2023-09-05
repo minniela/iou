@@ -1,8 +1,14 @@
-import {LightningElement, track} from 'lwc';
+import {LightningElement, track, wire} from 'lwc';
 import {getInstructions} from './instructions';
 import initializeApp from '@salesforce/apex/InitialIngestor.initiate';
 
+import { publish, MessageContext } from 'lightning/messageService';
+import IOU_POPULATED from '@salesforce/messageChannel/IOU_Populated__c';
+
 export default class IouSetupInstructions extends LightningElement {
+
+    @wire(MessageContext)
+    messageContext;
 
     @track hasLink = true;
 
@@ -27,8 +33,8 @@ export default class IouSetupInstructions extends LightningElement {
         //todo: add support for static resource name input
         initializeApp({staticResource: ''})
             .then(result => {
-                //todo: send message to sidebar component to display Trigger Audit instruction button
                 //todo: return something from the invoked method
+                publish(this.messageContext, IOU_POPULATED, '');
             })
             .catch(error => {
                 //todo: simply log to console
