@@ -31,7 +31,7 @@ const getInstructions = () => {
             title: 'Upload the JSON',
             instruction: 'navigate to your instance setup Static Resource page',
             link: 'https://' + hostname + '/lightning/setup/StaticResources/home',
-            linkText: "Setup Static Resource"
+            linkText: 'Setup Static Resource'
         },
         {
             title: 'Initialize the App',
@@ -40,13 +40,15 @@ const getInstructions = () => {
         },
         {
             title: 'Audit the Triggers',
-            instruction: '',
-            link: ''
+            instruction: 'find the Trigger Audit instructions in the side panel',
+            link: 'https://' + hostname + '/lightning/o/Apex_Class__c/list',
+            linkText: 'Visit Apex Class Records'
         },
         {
             title: 'You\'re All Set!',
-            instruction: '',
-            link: ''
+            instruction: 'review the level of Apex Tech Debt',
+            link: 'https://' + hostname + '', //todo: add link to report or dashboard,
+            linkText: 'IOU Metrics Report' //todo: update text after solution is created
         }
     ];
 }
