@@ -4,4 +4,7 @@
   <description>Instructions for completing the optional Trigger Audit.</description>
   <isExposed>true</isExposed>
   <masterLabel>IOU Trigger Audit</masterLabel>
+  <targets>
+    <target>lightning__HomePage</target>
+  </targets>
 </LightningComponentBundle>
