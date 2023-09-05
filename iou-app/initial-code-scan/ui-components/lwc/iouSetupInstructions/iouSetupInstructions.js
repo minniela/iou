@@ -24,12 +24,14 @@ export default class IouSetupInstructions extends LightningElement {
     }
 
     handlePopulateClick() {
+        //todo: add support for static resource name input
         initializeApp({staticResource: ''})
             .then(result => {
-
+                //todo: send message to sidebar component to display Trigger Audit instruction button
+                //todo: return something from the invoked method
             })
             .catch(error => {
-
+                //todo: simply log to console
             });
     }
 }
