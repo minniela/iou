@@ -41,6 +41,7 @@ export default class IouSetupInstructions extends LightningElement {
             .then(result => {
                 if (result.success) {
                     publish(this.messageContext, IOU_POPULATED);
+                    this.handleNextStep();
                 }
                 else {
                     console.log(result.title);
