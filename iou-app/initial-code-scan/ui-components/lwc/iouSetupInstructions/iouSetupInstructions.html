@@ -1,0 +1,33 @@
+<template>
+  <lightning-card  title={nextStepTitle}>
+    <lightning-button label="Next Step" slot="actions" onclick={handleNextStep} class="slds-m-left_x-small"></lightning-button>
+
+    <lightning-layout class="slds-align_absolute-center slds-p-bottom_small">
+      <lightning-layout-item class="slds-p-top_medium">
+        <lightning-formatted-rich-text value={nextStepInstruction}></lightning-formatted-rich-text>
+      </lightning-layout-item>
+    </lightning-layout>
+
+    <div if:true={hasLink} slot="footer">
+      <lightning-formatted-url value={nextStepLink} label={nextStepLinkText} target="_blank">
+      </lightning-formatted-url>
+    </div>
+    <div if:false={hasLink} slot="footer">
+      <lightning-layout horizontal-align="center">
+        <lightning-layout-item size="4">
+          <lightning-input type="text" label="Enter the name of the static resource you created."
+                           placeholder="initialCodeScan" value={staticResource} onchange={handleStaticResourceInput}>
+          </lightning-input>
+        </lightning-layout-item>
+      </lightning-layout>
+      <div class="slds-p-around_medium">
+        <lightning-button label="Populate IOU" variant="brand" onclick={handlePopulateClick}>
+        </lightning-button>
+      </div>
+    </div>
+
+    <div if:true={showSpinner}>
+      <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </div>
+  </lightning-card>
+</template>

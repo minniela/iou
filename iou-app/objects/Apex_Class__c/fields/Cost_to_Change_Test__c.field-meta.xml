@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <inlineHelpText>The total count of Cost to Change &amp; Test violations. See the documentation for the mapping of PMD Rules to Cost to Change &amp; Test in &quot;Level 0 Tech Debt Ruleset&quot;</inlineHelpText>
     <label>Cost to Change &amp; Test</label>
-    <precision>3</precision>
+    <precision>6</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>

@@ -4,7 +4,7 @@
     <description>As violations are resolved they are subtracted from this total. This count compared to the starting code provides a metric for the repayment process.</description>
     <externalId>false</externalId>
     <label>Current Violation Count</label>
-    <precision>3</precision>
+    <precision>9</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>

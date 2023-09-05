@@ -2407,5 +2407,13 @@
         <members>iou_logo</members>
         <name>ContentAsset</name>
     </types>
+    <types>
+        <members>IOU_Home</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>IOU_Populated</members>
+        <name>LightningMessageChannel</name>
+    </types>
     <version>57.0</version>
 </Package>

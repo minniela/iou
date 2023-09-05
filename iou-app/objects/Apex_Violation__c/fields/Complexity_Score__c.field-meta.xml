@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <inlineHelpText>Both cognitive and cyclomatic complexity are assigned numeric scores</inlineHelpText>
     <label>Complexity Score</label>
-    <precision>3</precision>
+    <precision>6</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>
