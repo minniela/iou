@@ -29,9 +29,11 @@ const getInstructions = () => {
         },
         {
             title: 'Upload the JSON',
-            instruction: 'navigate to your instance setup Static Resource page',
+            instruction: '<div>create a Static Resource from the ' +
+                '<span class="slds-text-font_monospace">scans/initialCodeScan.json</span> ' +
+                'file created in the last step</div>',
             link: 'https://' + hostname + '/lightning/setup/StaticResources/home',
-            linkText: 'Setup Static Resource'
+            linkText: 'Create Static Resource'
         },
         {
             title: 'Initialize the App',
