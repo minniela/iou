@@ -30,14 +30,16 @@ export default class IouSetupInstructions extends LightningElement {
     }
 
     handlePopulateClick() {
+        //todo: add spinner
         //todo: add support for static resource name input
-        initializeApp({staticResource: ''})
+        const scanFileName = 'defaultCodeScan';
+        initializeApp({staticResource: scanFileName})
             .then(result => {
                 //todo: return something from the invoked method
-                publish(this.messageContext, IOU_POPULATED, '');
+                publish(this.messageContext, IOU_POPULATED);
             })
             .catch(error => {
-                //todo: simply log to console
+                console.log(JSON.stringify(error));
             });
     }
 }

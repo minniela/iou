@@ -7,6 +7,8 @@ export default class IOUTriggerAudit extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
+    subscription = null;
+
     connectedCallback() {
         this.subscribeToMessageChannel();
     }
@@ -15,11 +17,11 @@ export default class IOUTriggerAudit extends LightningElement {
         this.subscription = subscribe(
             this.messageContext,
             IOU_POPULATED,
-            (message) => this.handleMessage(message)
+            () => this.handleMessage()
         );
     }
 
     handleMessage(message) {
-        alert('got it!');
+        console.log('handled');
     }
 }
