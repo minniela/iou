@@ -35,7 +35,7 @@ const getInstructions = () => {
         },
         {
             title: 'Initialize the App',
-            instruction: 'click the button below and IOU records will be created',
+            instruction: '',
             link: ''
         },
         {
