@@ -1,6 +1,7 @@
 import {LightningElement, track, wire} from 'lwc';
 import {getInstructions} from './instructions';
 import initializeApp from '@salesforce/apex/InitialIngestor.initiate';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import { publish, MessageContext } from 'lightning/messageService';
 import IOU_POPULATED from '@salesforce/messageChannel/IOU_Populated__c';
@@ -44,15 +45,23 @@ export default class IouSetupInstructions extends LightningElement {
                     this.handleNextStep();
                 }
                 else {
-                    console.log(result.title);
-                    console.log(result.message);
+                    this.showToast(result.title, result.message);
                 }
             })
             .catch(error => {
-                console.log(JSON.stringify(error));
+                this.showToast('Ensure the Static Resource Name is correct.', error.body.message);
             })
             .finally(() => {
                this.showSpinner = false;
             });
+    }
+
+    showToast(title, message) {
+        const event = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: "error"
+        });
+        this.dispatchEvent(event);
     }
 }
