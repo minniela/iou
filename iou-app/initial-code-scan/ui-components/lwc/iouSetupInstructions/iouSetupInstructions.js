@@ -14,7 +14,7 @@ export default class IouSetupInstructions extends LightningElement {
     @track hasLink = true;
     @track showSpinner = false;
 
-    nextStepIndex = 0
+    nextStepIndex = 0;
     nextStepTitle = getInstructions()[this.nextStepIndex].title;
     nextStepInstruction = getInstructions()[this.nextStepIndex].instruction;
     nextStepLink = getInstructions()[this.nextStepIndex].link;
