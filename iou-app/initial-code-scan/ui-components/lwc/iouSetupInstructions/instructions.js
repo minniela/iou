@@ -2,8 +2,9 @@ const getInstructions = () => {
     return [
         {
             title: 'Download Ruleset:',
-            instruction: '',
-            link: ''
+            instruction: 'click the link below to download',
+            link: 'https://github.com/minniela/iou',
+            linkText: 'IOU GitHub Repo'
         },
         {
             title: 'Install SFCA:',

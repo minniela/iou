@@ -1,15 +1,14 @@
 <template>
   <lightning-card  title={nextStepTitle}>
-    <lightning-button label="Next Step"
-                      slot="actions"
-                      onclick={handleNextStep}
-                      class="slds-m-left_x-small">
-    </lightning-button>
+    <lightning-button label="Next Step" slot="actions" onclick={handleNextStep} class="slds-m-left_x-small"></lightning-button>
 
     <lightning-layout class="slds-align_absolute-center slds-p-bottom_small">
       <lightning-layout-item class="slds-p-top_medium">
         <lightning-formatted-rich-text value={nextStepInstruction}></lightning-formatted-rich-text>
       </lightning-layout-item>
     </lightning-layout>
+
+    <lightning-formatted-url slot="footer" value={nextStepLink} label={nextStepLinkText} target="_blank">
+    </lightning-formatted-url>
   </lightning-card>
 </template>

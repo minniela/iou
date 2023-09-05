@@ -6,6 +6,8 @@ export default class IouSetupInstructions extends LightningElement {
     nextStepIndex = 0
     nextStepTitle = getInstructions()[this.nextStepIndex].title;
     nextStepInstruction = getInstructions()[this.nextStepIndex].instruction;
+    nextStepLink = getInstructions()[this.nextStepIndex].link;
+    nextStepLinkText = getInstructions()[this.nextStepIndex].linkText;
 
     handleNextStep() {
         this.nextStepIndex += 1;
