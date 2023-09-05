@@ -35,8 +35,13 @@ export default class IouSetupInstructions extends LightningElement {
         const scanFileName = 'defaultCodeScan';
         initializeApp({staticResource: scanFileName})
             .then(result => {
-                //todo: return something from the invoked method
-                publish(this.messageContext, IOU_POPULATED);
+                if (result.success) {
+                    publish(this.messageContext, IOU_POPULATED);
+                }
+                else {
+                    console.log(result.title);
+                    console.log(result.message);
+                }
             })
             .catch(error => {
                 console.log(JSON.stringify(error));
