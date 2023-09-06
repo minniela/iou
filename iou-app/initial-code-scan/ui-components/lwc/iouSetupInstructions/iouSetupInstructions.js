@@ -16,6 +16,10 @@ export default class IouSetupInstructions extends LightningElement {
     nextStepLink = getInstructions()[this.nextStepIndex].link;
     nextStepLinkText = getInstructions()[this.nextStepIndex].linkText;
 
+    connectedCallback() {
+        this.checkCounter();
+    }
+
     handleNextStep() {
         this.nextStepIndex += 1;
         const nextStep = getInstructions()[this.nextStepIndex];
@@ -38,7 +42,7 @@ export default class IouSetupInstructions extends LightningElement {
         initializeApp({staticResource: this.staticResource})
             .then(result => {
                 if (result.success) {
-                    this.template.querySelector('c-iou-initialization-counter').publishCountData();
+                    this.checkCounter();
                     this.handleNextStep();
                 }
                 else {
@@ -51,6 +55,10 @@ export default class IouSetupInstructions extends LightningElement {
             .finally(() => {
                this.showSpinner = false;
             });
+    }
+
+    checkCounter() {
+        this.template.querySelector('c-iou-initialization-counter').publishCountData();
     }
 
     showToast(title, message) {
