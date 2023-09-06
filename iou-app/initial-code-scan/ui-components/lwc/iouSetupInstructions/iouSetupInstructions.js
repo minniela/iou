@@ -1,15 +1,9 @@
-import {LightningElement, track, wire} from 'lwc';
+import {LightningElement, track} from 'lwc';
 import {getInstructions} from './instructions';
 import initializeApp from '@salesforce/apex/InitialIngestor.initiate';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-import { publish, MessageContext } from 'lightning/messageService';
-import IOU_POPULATED from '@salesforce/messageChannel/IOU_Populated__c';
-
 export default class IouSetupInstructions extends LightningElement {
-
-    @wire(MessageContext)
-    messageContext;
 
     @track staticResource = 'initialCodeScan';
     @track hasLink = true;
@@ -44,7 +38,7 @@ export default class IouSetupInstructions extends LightningElement {
         initializeApp({staticResource: this.staticResource})
             .then(result => {
                 if (result.success) {
-                    publish(this.messageContext, IOU_POPULATED);
+                    //set child api field
                     this.handleNextStep();
                 }
                 else {
