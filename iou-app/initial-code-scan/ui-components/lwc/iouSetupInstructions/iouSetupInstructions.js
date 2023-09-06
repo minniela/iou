@@ -16,10 +16,6 @@ export default class IouSetupInstructions extends LightningElement {
     nextStepLink = getInstructions()[this.nextStepIndex].link;
     nextStepLinkText = getInstructions()[this.nextStepIndex].linkText;
 
-    connectedCallback() {
-        this.checkCounter();
-    }
-
     handleNextStep() {
         this.nextStepIndex += 1;
         const nextStep = getInstructions()[this.nextStepIndex];
