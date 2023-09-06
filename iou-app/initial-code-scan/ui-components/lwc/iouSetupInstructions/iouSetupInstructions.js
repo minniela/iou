@@ -16,11 +16,11 @@ export default class IouSetupInstructions extends LightningElement {
     @track showSpinner = false;
     @track hasNextStep = true;
 
-    nextStepIndex = 0;
-    nextStepTitle = getInstructions()[this.nextStepIndex].title;
-    nextStepInstruction = getInstructions()[this.nextStepIndex].instruction;
-    nextStepLink = getInstructions()[this.nextStepIndex].link;
-    nextStepLinkText = getInstructions()[this.nextStepIndex].linkText;
+    nextStepIndex;
+    nextStepTitle;
+    nextStepInstruction;
+    nextStepLink;
+    nextStepLinkText;
 
     connectedCallback() {
         this.subscribeToMessageChannel();
@@ -35,21 +35,25 @@ export default class IouSetupInstructions extends LightningElement {
     }
 
     handleMessage(payload) {
-        console.log('instructions has handled it');
-        console.log(JSON.stringify(payload));
+        this.nextStepIndex = payload.classCount > 0 ? payload.triggerAuditHasStarted ? 7 : 6 : 0;
+        const currentStep = getInstructions()[this.nextStepIndex];
+        this.configureThisStep(currentStep);
+    }
+
+    configureThisStep(step) {
+        this.nextStepTitle = step.title;
+        this.nextStepInstruction = step.instruction;
+        this.hasLink = step.link !== '';
+        this.nextStepLink = step.link;
+        this.nextStepLinkText = step.linkText;
+
+        this.hasNextStep = this.nextStepIndex < getInstructions().length - 1;
     }
 
     handleNextStep() {
         this.nextStepIndex += 1;
-        const nextStep = getInstructions()[this.nextStepIndex];
-        this.nextStepTitle = nextStep.title;
-        this.nextStepInstruction = nextStep.instruction;
-
-        this.hasLink = nextStep.link !== '';
-        this.nextStepLink = nextStep.link;
-        this.nextStepLinkText = nextStep.linkText;
-
-        this.hasNextStep = this.nextStepIndex < getInstructions().length - 1;
+        const currentStep = getInstructions()[this.nextStepIndex];
+        this.configureThisStep(currentStep);
     }
 
     handleStaticResourceInput(event) {
