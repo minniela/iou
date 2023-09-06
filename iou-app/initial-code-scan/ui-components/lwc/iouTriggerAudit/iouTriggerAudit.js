@@ -1,4 +1,4 @@
-import {LightningElement, wire} from 'lwc';
+import {LightningElement, wire, track} from 'lwc';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import IOU_POPULATED from '@salesforce/messageChannel/IOU_Populated__c';
 
@@ -6,6 +6,8 @@ export default class IOUTriggerAudit extends LightningElement {
 
     @wire(MessageContext)
     messageContext;
+
+    @track classesCreated = false;
 
     subscription = null;
 
@@ -22,7 +24,6 @@ export default class IOUTriggerAudit extends LightningElement {
     }
 
     handleMessage(payload) {
-        console.log('trigger audit has handled it');
-        console.log(JSON.stringify(payload));
+        this.classesCreated = payload.classCount > 0;
     }
 }
