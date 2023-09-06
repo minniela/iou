@@ -15,8 +15,7 @@ export default class IouInitializationCounter extends LightningElement {
 
     publishCountData(payload) {
         //todo: if this wire data, would it re-fire when data was populated
-        console.log(JSON.stringify(payload));
-        //publish(this.messageContext, IOU_POPULATED);
+        publish(this.messageContext, IOU_POPULATED, payload);
     }
 
     @api

@@ -17,11 +17,12 @@ export default class IOUTriggerAudit extends LightningElement {
         this.subscription = subscribe(
             this.messageContext,
             IOU_POPULATED,
-            () => this.handleMessage()
+            (payload) => this.handleMessage(payload)
         );
     }
 
-    handleMessage(message) {
+    handleMessage(payload) {
         console.log('handled');
+        console.log(JSON.stringify(payload));
     }
 }
