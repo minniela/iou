@@ -3,4 +3,16 @@
   <masterLabel>IOUPopulated</masterLabel>
   <isExposed>true</isExposed>
   <description>Message Channel for notifying when IOU records have been created.</description>
+  <lightningMessageFields>
+    <fieldName>classCount</fieldName>
+    <description>The number of Apex Classes created from the scan.</description>
+  </lightningMessageFields>
+  <lightningMessageFields>
+    <fieldName>violationCount</fieldName>
+    <description>The number of Apex Violations created from the scan.</description>
+  </lightningMessageFields>
+  <lightningMessageFields>
+    <fieldName>triggerAuditHasStarted</fieldName>
+    <description>A Boolean that denotes if any class has been marked as containing Trigger related logic.</description>
+  </lightningMessageFields>
 </LightningMessageChannel>
