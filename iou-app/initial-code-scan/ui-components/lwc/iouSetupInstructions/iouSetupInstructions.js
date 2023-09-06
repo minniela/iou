@@ -38,7 +38,7 @@ export default class IouSetupInstructions extends LightningElement {
         initializeApp({staticResource: this.staticResource})
             .then(result => {
                 if (result.success) {
-                    //set child api field
+                    this.template.querySelector('c-iou-initialization-counter').publishCountData();
                     this.handleNextStep();
                 }
                 else {
