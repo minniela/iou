@@ -1,4 +1,4 @@
-public with sharing class InitialIngestor {
+public without sharing class InitialIngestor {
 
     public static Response response = new Response(true, 'IOU Data Populated', 'all good!');
 
@@ -144,6 +144,9 @@ public with sharing class InitialIngestor {
                 }
             }
         }
+        apexClass.Starting_Violation_Count__c = apexClass.Cost_to_Change_Test__c +
+            apexClass.Cost_to_Understand_Maintain__c + apexClass.Code_Smells__c +
+            apexClass.Bad_Practices__c + apexClass.Ineffectual_Tests__c;
     }
 
     @TestVisible

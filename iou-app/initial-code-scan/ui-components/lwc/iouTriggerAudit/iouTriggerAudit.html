@@ -1,2 +1,36 @@
 <template>
+  <lightning-card title="the Trigger Audit">
+    <ol class="slds-has-dividers_around slds-has-block-links_space slds-p-around_small">
+      <li class="slds-item">
+        <p class="slds-p-around_small">
+          Open your IDE and navigate to <span class="slds-text-font_monospace">force-app/main/default/triggers</span>.
+        </p>
+      </li>
+      <li class="slds-item">
+        <p class="slds-p-around_small">
+          Open the first Trigger in the <span class="slds-text-font_monospace">/triggers</span> folder.
+        </p>
+      </li>
+      <li class="slds-item">
+        <p class="slds-p-around_small">
+          Mark <span class="slds-text-font_monospace">Has_Trigger_Logic__c = true</span> if an Apex Class was created.
+        </p>
+      </li>
+      <li class="slds-item">
+        <p class="slds-p-around_small">
+          For each class directly related to the Trigger, open it and mark each class it calls.
+        </p>
+      </li>
+      <li class="slds-item">
+        <p class="slds-p-around_small">
+          Continue for all Triggers, directly related Classes, and their direct dependencies.
+        </p>
+      </li>
+      <li class="slds-item">
+        <p class="slds-p-around_small">
+          Leave it at that, or continue until all dependencies have been exhausted.
+        </p>
+      </li>
+    </ol>
+  </lightning-card>
 </template>
