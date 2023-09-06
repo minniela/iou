@@ -22,7 +22,7 @@ export default class IOUTriggerAudit extends LightningElement {
     }
 
     handleMessage(payload) {
-        console.log('handled');
+        console.log('trigger audit has handled it');
         console.log(JSON.stringify(payload));
     }
 }

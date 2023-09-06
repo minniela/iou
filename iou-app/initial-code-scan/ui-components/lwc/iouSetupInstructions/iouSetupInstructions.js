@@ -1,9 +1,15 @@
-import {LightningElement, track} from 'lwc';
+import {LightningElement, track, wire} from 'lwc';
 import {getInstructions} from './instructions';
 import initializeApp from '@salesforce/apex/InitialIngestor.initiate';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
+import { subscribe, MessageContext } from 'lightning/messageService';
+import IOU_POPULATED from '@salesforce/messageChannel/IOU_Populated__c';
+
 export default class IouSetupInstructions extends LightningElement {
+
+    @wire(MessageContext)
+    messageContext;
 
     @track staticResource = 'initialCodeScan';
     @track hasLink = true;
@@ -15,6 +21,23 @@ export default class IouSetupInstructions extends LightningElement {
     nextStepInstruction = getInstructions()[this.nextStepIndex].instruction;
     nextStepLink = getInstructions()[this.nextStepIndex].link;
     nextStepLinkText = getInstructions()[this.nextStepIndex].linkText;
+
+    connectedCallback() {
+        this.subscribeToMessageChannel();
+    }
+
+    subscribeToMessageChannel() {
+        this.subscription = subscribe(
+            this.messageContext,
+            IOU_POPULATED,
+            (payload) => this.handleMessage(payload)
+        );
+    }
+
+    handleMessage(payload) {
+        console.log('instructions has handled it');
+        console.log(JSON.stringify(payload));
+    }
 
     handleNextStep() {
         this.nextStepIndex += 1;
