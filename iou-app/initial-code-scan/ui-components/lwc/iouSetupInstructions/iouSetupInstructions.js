@@ -14,6 +14,7 @@ export default class IouSetupInstructions extends LightningElement {
     @track staticResource = 'initialCodeScan';
     @track hasLink = true;
     @track showSpinner = false;
+    @track hasNextStep = true;
 
     nextStepIndex = 0;
     nextStepTitle = getInstructions()[this.nextStepIndex].title;
