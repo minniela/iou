@@ -3,7 +3,7 @@ import {getInstructions} from './instructions';
 import initializeApp from '@salesforce/apex/InitialIngestor.initiate';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-import { publish, MessageContext } from 'lightning/messageService';
+import { subscribe, MessageContext } from 'lightning/messageService';
 import IOU_POPULATED from '@salesforce/messageChannel/IOU_Populated__c';
 
 export default class IouSetupInstructions extends LightningElement {
@@ -16,23 +16,44 @@ export default class IouSetupInstructions extends LightningElement {
     @track showSpinner = false;
     @track hasNextStep = true;
 
-    nextStepIndex = 0;
-    nextStepTitle = getInstructions()[this.nextStepIndex].title;
-    nextStepInstruction = getInstructions()[this.nextStepIndex].instruction;
-    nextStepLink = getInstructions()[this.nextStepIndex].link;
-    nextStepLinkText = getInstructions()[this.nextStepIndex].linkText;
+    nextStepIndex;
+    nextStepTitle;
+    nextStepInstruction;
+    nextStepLink;
+    nextStepLinkText;
+
+    connectedCallback() {
+        this.subscribeToMessageChannel();
+    }
+
+    subscribeToMessageChannel() {
+        this.subscription = subscribe(
+            this.messageContext,
+            IOU_POPULATED,
+            (payload) => this.handleMessage(payload)
+        );
+    }
+
+    handleMessage(payload) {
+        this.nextStepIndex = payload.classCount > 0 ? payload.triggerAuditHasStarted ? 7 : 6 : 0;
+        const currentStep = getInstructions()[this.nextStepIndex];
+        this.configureThisStep(currentStep);
+    }
+
+    configureThisStep(step) {
+        this.nextStepTitle = step.title;
+        this.nextStepInstruction = step.instruction;
+        this.hasLink = step.link !== '';
+        this.nextStepLink = step.link;
+        this.nextStepLinkText = step.linkText;
+
+        this.hasNextStep = this.nextStepIndex < getInstructions().length - 1;
+    }
 
     handleNextStep() {
         this.nextStepIndex += 1;
-        const nextStep = getInstructions()[this.nextStepIndex];
-        this.nextStepTitle = nextStep.title;
-        this.nextStepInstruction = nextStep.instruction;
-
-        this.hasLink = nextStep.link !== '';
-        this.nextStepLink = nextStep.link;
-        this.nextStepLinkText = nextStep.linkText;
-
-        this.hasNextStep = this.nextStepIndex < getInstructions().length - 1;
+        const currentStep = getInstructions()[this.nextStepIndex];
+        this.configureThisStep(currentStep);
     }
 
     handleStaticResourceInput(event) {
@@ -44,7 +65,7 @@ export default class IouSetupInstructions extends LightningElement {
         initializeApp({staticResource: this.staticResource})
             .then(result => {
                 if (result.success) {
-                    publish(this.messageContext, IOU_POPULATED);
+                    this.checkCounter();
                     this.handleNextStep();
                 }
                 else {
@@ -57,6 +78,10 @@ export default class IouSetupInstructions extends LightningElement {
             .finally(() => {
                this.showSpinner = false;
             });
+    }
+
+    checkCounter() {
+        this.template.querySelector('c-iou-initialization-counter').checkForCountDetails();
     }
 
     showToast(title, message) {
