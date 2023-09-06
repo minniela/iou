@@ -10,6 +10,7 @@ export default class IouInitializationCounter extends LightningElement {
 
     @api
     publishCountData() {
+        //todo: if this wire data, would it re-fire when data was populated
         publish(this.messageContext, IOU_POPULATED);
     }
 }
