@@ -32,9 +32,7 @@ export default class IouSetupInstructions extends LightningElement {
         this.nextStepLink = nextStep.link;
         this.nextStepLinkText = nextStep.linkText;
 
-        if (getInstructions().length - 1 === this.nextStepIndex) {
-            this.hasNextStep = false;
-        }
+        this.hasNextStep = this.nextStepIndex < getInstructions().length - 1;
     }
 
     handleStaticResourceInput(event) {
