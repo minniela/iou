@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+  <apiVersion>58.0</apiVersion>
+  <description>Displays the number of violations found in the org.</description>
+  <isExposed>true</isExposed>
+  <masterLabel>IOU Violation Count</masterLabel>
+  <targets>
+    <target>lightning__HomePage</target>
+  </targets>
+</LightningComponentBundle>
