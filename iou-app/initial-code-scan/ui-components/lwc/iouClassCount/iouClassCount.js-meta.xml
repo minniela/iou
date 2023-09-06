@@ -4,4 +4,7 @@
   <description>Displays the number of classes with violations.</description>
   <isExposed>true</isExposed>
   <masterLabel>IOU Class Count</masterLabel>
+  <targets>
+    <target>lightning__HomePage</target>
+  </targets>
 </LightningComponentBundle>

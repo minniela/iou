@@ -4,4 +4,7 @@
   <description>Displays the number of violations found in the org.</description>
   <isExposed>true</isExposed>
   <masterLabel>IOU Violation Count</masterLabel>
+  <targets>
+    <target>lightning__HomePage</target>
+  </targets>
 </LightningComponentBundle>
