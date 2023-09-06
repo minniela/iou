@@ -14,6 +14,7 @@ export default class IouSetupInstructions extends LightningElement {
     @track staticResource = 'initialCodeScan';
     @track hasLink = true;
     @track showSpinner = false;
+    @track hasNextStep = true;
 
     nextStepIndex = 0;
     nextStepTitle = getInstructions()[this.nextStepIndex].title;
@@ -30,6 +31,8 @@ export default class IouSetupInstructions extends LightningElement {
         this.hasLink = nextStep.link !== '';
         this.nextStepLink = nextStep.link;
         this.nextStepLinkText = nextStep.linkText;
+
+        this.hasNextStep = this.nextStepIndex < getInstructions().length - 1;
     }
 
     handleStaticResourceInput(event) {

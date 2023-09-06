@@ -1,6 +1,8 @@
 <template>
   <lightning-card  title={nextStepTitle}>
-    <lightning-button label="Next Step" slot="actions" onclick={handleNextStep} class="slds-m-left_x-small"></lightning-button>
+    <template if:true={hasNextStep}>
+      <lightning-button label="Next Step" slot="actions" onclick={handleNextStep} class="slds-m-left_x-small"></lightning-button>
+    </template>
 
     <lightning-layout class="slds-align_absolute-center slds-p-bottom_small">
       <lightning-layout-item class="slds-p-top_medium">
