@@ -54,7 +54,7 @@ export default class IouSetupInstructions extends LightningElement {
     }
 
     checkCounter() {
-        this.template.querySelector('c-iou-initialization-counter').publishCountData();
+        this.template.querySelector('c-iou-initialization-counter').checkForCountDetails();
     }
 
     showToast(title, message) {
