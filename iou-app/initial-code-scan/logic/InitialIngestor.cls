@@ -3,10 +3,17 @@ public without sharing class InitialIngestor {
     public static Response response = new Response(true, 'IOU Data Populated', 'all good!');
 
     @AuraEnabled
-    public static void startOver() {
+    public static Response startOver() {
+        response.title = 'IOU Records Deleted';
         List<Apex_Class__c> apexClass = [SELECT Id FROM Apex_Class__c];
-        delete apexClass;
-        Database.emptyRecycleBin(apexClass);
+        try {
+            delete apexClass;
+            Database.emptyRecycleBin(apexClass);
+        }
+        catch (Exception ex) {
+            configureFailResponse('IOU Record Deletion failed', ex.getMessage());
+        }
+        return response;
     }
 
     @AuraEnabled
@@ -36,9 +43,7 @@ public without sharing class InitialIngestor {
             insert apexClassesByName.values();
         }
         catch (Exception ex) {
-            response.success = false;
-            response.title = 'Failed to Create Apex Classes';
-            response.message = ex.getMessage();
+            configureFailResponse('Failed to Create Apex Classes', ex.getMessage());
         }
         return apexClassesByName;
     }
@@ -66,9 +71,7 @@ public without sharing class InitialIngestor {
             insert apexViolations;
         }
         catch (Exception ex) {
-            response.success = false;
-            response.title = 'Failed to Create Apex Violations';
-            response.message = ex.getMessage();
+            configureFailResponse('Failed to Create Apex Violations', ex.getMessage());
         }
         return violationListByApexClass;
     }
@@ -103,9 +106,7 @@ public without sharing class InitialIngestor {
             update apexClassesToUpdate;
         }
         catch (Exception ex) {
-            response.success = false;
-            response.title = 'Failed to Calculate Apex Class Violations';
-            response.message = ex.getMessage();
+            configureFailResponse('Failed to Calculate Apex Class Violations', ex.getMessage());
         }
     }
 
@@ -147,6 +148,12 @@ public without sharing class InitialIngestor {
         apexClass.Starting_Violation_Count__c = apexClass.Cost_to_Change_Test__c +
             apexClass.Cost_to_Understand_Maintain__c + apexClass.Code_Smells__c +
             apexClass.Bad_Practices__c + apexClass.Ineffectual_Tests__c;
+    }
+
+    private static void configureFailResponse(String title, String message) {
+        response.success = false;
+        response.title = title;
+        response.message = message;
     }
 
     @TestVisible

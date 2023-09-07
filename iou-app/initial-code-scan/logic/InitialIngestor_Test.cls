@@ -5,8 +5,10 @@ private class InitialIngestor_Test {
         //GIVEN - default static resource provided
 
         Test.startTest();
-        InitialIngestor.initiate('defaultCodeScan');
+        InitialIngestor.Response response = InitialIngestor.initiate('defaultCodeScan');
         Test.stopTest();
+
+        Assert.isTrue(response.success);
 
         List<Apex_Class__c> apexClasses = [
             SELECT File_Length__c, Cost_to_Understand_Maintain__c, Cost_to_Change_Test__c, Code_Smells__c,
@@ -39,8 +41,10 @@ private class InitialIngestor_Test {
         Assert.areEqual(13, apexViolations.size());
 
         Test.startTest();
-        InitialIngestor.startOver();
+        InitialIngestor.Response response = InitialIngestor.startOver();
         Test.stopTest();
+
+        Assert.isTrue(response.success);
 
         apexClasses = [SELECT Id FROM Apex_Class__c];
         Assert.areEqual(0, apexClasses.size());

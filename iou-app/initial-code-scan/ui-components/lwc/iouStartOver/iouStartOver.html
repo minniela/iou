@@ -1,0 +1,12 @@
+<template>
+  <div if:true={showDeleteButton}>
+    <lightning-card title="Start Over">
+      <lightning-button slot="actions" label="Delete all IOU records" variant="destructive" onclick={requireConfirmation}>
+      </lightning-button>
+
+      <div if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+      </div>
+    </lightning-card>
+  </div>
+</template>
