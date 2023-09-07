@@ -15,7 +15,11 @@ export default class IouStartOver extends LightningElement {
             theme: 'warning'
         });
         if (confirmed) {
-            this.showToast('Confirmed!', 'Deletion in progress, page will reload when complete.', 'success');
+            this.showToast(
+                'Confirmed!',
+                'Deletion in progress, page will reload when complete.',
+                'success',
+                'sticky');
             this.handleDelete();
         }
     }
@@ -24,7 +28,7 @@ export default class IouStartOver extends LightningElement {
         startOver()
             .then(response => {
                 if (response.success) {
-
+                    window.location.reload();
                 }
                 else {
                     this.showToast(response.title, response.message, 'error');
@@ -35,11 +39,13 @@ export default class IouStartOver extends LightningElement {
             })
     }
 
-    showToast(title, message, variant) {
+    showToast(title, message, variant, mode) {
+        mode = mode === '' ? 'dismissible' : mode;
         const event = new ShowToastEvent({
             title: title,
             message: message,
-            variant: variant
+            variant: variant,
+            mode: mode
         });
         this.dispatchEvent(event);
     }
