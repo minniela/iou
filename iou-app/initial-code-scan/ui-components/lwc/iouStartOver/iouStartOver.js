@@ -1,13 +1,34 @@
-import {LightningElement, track} from 'lwc';
+import {LightningElement, track, wire} from 'lwc';
 import LightningConfirm from 'lightning/confirm';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import startOver from "@salesforce/apex/InitialIngestor.startOver";
 
+import { subscribe, MessageContext } from 'lightning/messageService';
+import IOU_POPULATED from '@salesforce/messageChannel/IOU_Populated__c';
+
 export default class IouStartOver extends LightningElement {
 
-    //todo: subscribe to message service to display conditionally
+    @wire(MessageContext)
+    messageContext;
 
+    @track showDeleteButton = false;
     @track showSpinner = false;
+
+    connectedCallback() {
+        this.subscribeToMessageChannel();
+    }
+
+    subscribeToMessageChannel() {
+        this.subscription = subscribe(
+            this.messageContext,
+            IOU_POPULATED,
+            (payload) => this.handleMessage(payload)
+        );
+    }
+
+    handleMessage(payload) {
+        this.showDeleteButton = payload.classCount > 0;
+    }
 
     async requireConfirmation() {
         const confirmed = await LightningConfirm.open({
