@@ -37,6 +37,12 @@
                 <identifier>c_iouTriggerAudit</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>iouStartOver</componentName>
+                <identifier>c_iouStartOver</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
