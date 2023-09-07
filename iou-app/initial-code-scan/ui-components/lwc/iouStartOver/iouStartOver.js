@@ -1,11 +1,10 @@
 import {LightningElement} from 'lwc';
 import LightningConfirm from 'lightning/confirm';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import startOver from "@salesforce/apex/InitialIngestor.startOver";
 
 export default class IouStartOver extends LightningElement {
-
-    //todo: add a response from the apex
-    //todo: handle response and toast any error
+    
     //todo: refresh the page upon deletion of records, instead of another layer of message service
     //todo: subscribe to message service to display conditionally
 
@@ -22,11 +21,25 @@ export default class IouStartOver extends LightningElement {
 
     handleDelete() {
         startOver()
-            .then(() => {
+            .then(response => {
+                if (response.success) {
 
+                }
+                else {
+                    this.showToast(response.title, response.message);
+                }
             })
             .catch(error => {
-
+                this.showToast('Failed to delete IOU records.', error.body.message);
             })
+    }
+
+    showToast(title, message) {
+        const event = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: "error"
+        });
+        this.dispatchEvent(event);
     }
 }
