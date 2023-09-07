@@ -4,7 +4,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import startOver from "@salesforce/apex/InitialIngestor.startOver";
 
 export default class IouStartOver extends LightningElement {
-    
+
     //todo: refresh the page upon deletion of records, instead of another layer of message service
     //todo: subscribe to message service to display conditionally
 
@@ -15,6 +15,7 @@ export default class IouStartOver extends LightningElement {
             theme: 'warning'
         });
         if (confirmed) {
+            this.showToast('Confirmed!', 'Deletion in progress, page will reload when complete.', 'success');
             this.handleDelete();
         }
     }
@@ -26,19 +27,19 @@ export default class IouStartOver extends LightningElement {
 
                 }
                 else {
-                    this.showToast(response.title, response.message);
+                    this.showToast(response.title, response.message, 'error');
                 }
             })
             .catch(error => {
-                this.showToast('Failed to delete IOU records.', error.body.message);
+                this.showToast('Failed to delete IOU records.', error.body.message, 'error');
             })
     }
 
-    showToast(title, message) {
+    showToast(title, message, variant) {
         const event = new ShowToastEvent({
             title: title,
             message: message,
-            variant: "error"
+            variant: variant
         });
         this.dispatchEvent(event);
     }
