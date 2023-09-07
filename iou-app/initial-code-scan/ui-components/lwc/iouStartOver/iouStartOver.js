@@ -1,12 +1,13 @@
-import {LightningElement} from 'lwc';
+import {LightningElement, track} from 'lwc';
 import LightningConfirm from 'lightning/confirm';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import startOver from "@salesforce/apex/InitialIngestor.startOver";
 
 export default class IouStartOver extends LightningElement {
 
-    //todo: refresh the page upon deletion of records, instead of another layer of message service
     //todo: subscribe to message service to display conditionally
+
+    @track showSpinner = false;
 
     async requireConfirmation() {
         const confirmed = await LightningConfirm.open({
@@ -25,6 +26,7 @@ export default class IouStartOver extends LightningElement {
     }
 
     handleDelete() {
+        this.showSpinner = true;
         startOver()
             .then(response => {
                 if (response.success) {
@@ -37,6 +39,9 @@ export default class IouStartOver extends LightningElement {
             .catch(error => {
                 this.showToast('Failed to delete IOU records.', error.body.message, 'error');
             })
+            .finally(() => {
+                this.showSpinner = false;
+            });
     }
 
     showToast(title, message, variant, mode) {
