@@ -1,10 +1,23 @@
 public without sharing class IOUReportingService {
 
+    public static Response getData(String scope) {
+        Response response = new Response();
+
+        if (scope == 'startingPoint') {
+
+        }
+        else if (scope == 'currentState') {
+
+        }
+
+        return response;
+    }
+
 
 
     public class Response {
         @AuraEnabled
-        public Boolean success;
+        public Boolean success = true;
         @AuraEnabled
         public Map<String, Metrics> metricsByType = new Map<String, IOUReportingService.Metrics>();
     }
