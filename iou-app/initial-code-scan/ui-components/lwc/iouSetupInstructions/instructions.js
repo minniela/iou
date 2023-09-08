@@ -22,7 +22,7 @@ const getInstructions = () => {
         {
             title: 'Run SFCA',
             instruction: '<div class="slds-text-font_monospace">' +
-                'sfdx scanner:run -f json -o scans/initialCodeScan.json -t force-app --pmdconfig level-0-tech-debt-ruleset.xml' +
+                'sfdx scanner:run -e pmd -f json -o initialCodeScan.json -t force-app --pmdconfig level-0-tech-debt-ruleset.xml' +
                 '</div>',
             link: 'https://forcedotcom.github.io/sfdx-scanner/en/v3.x/scanner-commands/run/',
             linkText: "SFCA Command Reference"
@@ -30,7 +30,7 @@ const getInstructions = () => {
         {
             title: 'Upload the JSON',
             instruction: '<div>create a Static Resource from the ' +
-                '<span class="slds-text-font_monospace">scans/initialCodeScan.json</span> ' +
+                '<span class="slds-text-font_monospace">initialCodeScan.json</span> ' +
                 'file created in the last step</div>',
             link: 'https://' + hostname + '/lightning/setup/StaticResources/home',
             linkText: 'Create Static Resource'
