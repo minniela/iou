@@ -11,14 +11,13 @@ private class InitialIngestor_Test {
         Assert.isTrue(response.success);
 
         List<Apex_Class__c> apexClasses = [
-            SELECT File_Length__c, Cost_to_Understand_Maintain__c, Cost_to_Change_Test__c, Code_Smells__c,
+            SELECT Cost_to_Understand_Maintain__c, Cost_to_Change_Test__c, Code_Smells__c,
                 Bad_Practices__c, Ineffectual_Tests__c, Starting_Violation_Count__c
             FROM Apex_Class__c
         ];
         Assert.areEqual(1, apexClasses.size());
 
         Apex_Class__c apexClass = apexClasses.get(0);
-        Assert.areEqual(221, apexClass.File_Length__c);
         Assert.areEqual(248, apexClass.Cost_to_Understand_Maintain__c);
         Assert.areEqual(40, apexClass.Cost_to_Change_Test__c);
         Assert.areEqual(8, apexClass.Code_Smells__c);

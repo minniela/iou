@@ -36,7 +36,6 @@
         <members>Apex_Class__c.Cost_to_Change_Test__c</members>
         <members>Apex_Class__c.Cost_to_Understand_Maintain__c</members>
         <members>Apex_Class__c.Current_Code_Coverage__c</members>
-        <members>Apex_Class__c.File_Length__c</members>
         <members>Apex_Class__c.Has_Trigger_Logic__c</members>
         <members>Apex_Class__c.Ineffectual_Tests__c</members>
         <members>Apex_Class__c.Related_Test_Suites__c</members>
