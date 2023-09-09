@@ -127,9 +127,6 @@ public without sharing class InitialIngestor {
             switch on violation.Category__c {
                 when 'Cost to Understand & Maintain' {
                     apexClass.Cost_to_Understand_Maintain__c += violation.Complexity_Score__c;
-                    if (apexClass.Name == violation.Method__c) {
-                        apexClass.File_Length__c = violation.Ending_Line__c - violation.Starting_Line__c;
-                    }
                 }
                 when 'Cost to Change & Test' {
                     apexClass.Cost_to_Change_Test__c += violation.Complexity_Score__c;
