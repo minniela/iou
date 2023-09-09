@@ -24,7 +24,7 @@ public without sharing class InitialIngestor {
         List<ApexClass> apexClassCache = (List<ApexClass>) JSON.deserialize(pmdScan.Body.toString(), List<ApexClass>.class);
 
         Map<String, Apex_Class__c> apexClassesByName = createApexClasses(apexClassCache);
-        Map<Apex_Class__c, List<Apex_Violation__c>> violationListByApexClass = createApexViolations(apexClassCache, apexClassesByName);
+        createApexViolations(apexClassCache, apexClassesByName);
 
         return response;
     }
@@ -47,11 +47,10 @@ public without sharing class InitialIngestor {
         return apexClassesByName;
     }
 
-    private static Map<Apex_Class__c, List<Apex_Violation__c>> createApexViolations(
+    private static void createApexViolations(
         List<ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByName
     ) {
         List<Apex_Violation__c> apexViolations = new List<Apex_Violation__c>();
-        Map<Apex_Class__c, List<Apex_Violation__c>> violationListByApexClass = new Map<Apex_Class__c, List<Apex_Violation__c>>();
         for (ApexClass classCache : apexClassCaches) {
             String fileNameKey = parseFileName(classCache.fileName);
             Apex_Class__c apexClass = apexClassesByName.get(fileNameKey);
@@ -59,11 +58,6 @@ public without sharing class InitialIngestor {
             for (ApexViolation violationCache: classCache.violations) {
                 Apex_Violation__c apexViolation = configureViolation(violationCache, apexClass);
                 apexViolations.add(apexViolation);
-
-                if (!violationListByApexClass.containsKey(apexClass)) {
-                    violationListByApexClass.put(apexClass, new List<Apex_Violation__c>());
-                }
-                violationListByApexClass.get(apexClass).add(apexViolation);
             }
         }
         try {
@@ -72,7 +66,6 @@ public without sharing class InitialIngestor {
         catch (Exception ex) {
             configureFailResponse('Failed to Create Apex Violations', ex.getMessage());
         }
-        return violationListByApexClass;
     }
 
     private static Apex_Violation__c configureViolation(ApexViolation violationCache, Apex_Class__c apexClass) {
