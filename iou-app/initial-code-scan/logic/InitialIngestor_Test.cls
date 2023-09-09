@@ -23,7 +23,7 @@ private class InitialIngestor_Test {
         Assert.areEqual(8, apexClass.Starting_Code_Smells__c);
         Assert.areEqual(1, apexClass.Starting_Bad_Practices__c);
         Assert.areEqual(1, apexClass.Starting_Ineffectual_Tests__c);
-        //Assert.areEqual(298, apexClass.Starting_Violation_Count__c);
+        Assert.areEqual(298, apexClass.Starting_Violation_Count__c);
 
         List<Apex_Violation__c> apexViolations = [SELECT Id FROM Apex_Violation__c];
         Assert.areEqual(13, apexViolations.size());
