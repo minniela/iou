@@ -143,7 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Apex Violations hold the violations found during SFCA scans with the selected PMD ruleset. These violations form the derived metrics for the replated Apex Class.</description>
+    <description>Apex Violations hold the violations found during SFCA scans with the selected PMD ruleset. These violations form the derived metrics for the related Apex Class.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
