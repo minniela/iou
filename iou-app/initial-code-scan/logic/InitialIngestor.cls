@@ -25,7 +25,6 @@ public without sharing class InitialIngestor {
 
         Map<String, Apex_Class__c> apexClassesByName = createApexClasses(apexClassCache);
         Map<Apex_Class__c, List<Apex_Violation__c>> violationListByApexClass = createApexViolations(apexClassCache, apexClassesByName);
-        calculateViolationsInApexClass(violationListByApexClass);
 
         return response;
     }
@@ -91,60 +90,6 @@ public without sharing class InitialIngestor {
             apexViolation.Starting_Complexity_Score__c = parseComplexityScore(violationCache.message);
         }
         return apexViolation;
-    }
-
-    private static void calculateViolationsInApexClass(Map<Apex_Class__c, List<Apex_Violation__c>> violationListByApexClassId) {
-        List<Apex_Class__c> apexClassesToUpdate = new List<Apex_Class__c>();
-        for (Apex_Class__c apexClass : violationListByApexClassId.keySet()) {
-            Apex_Class__c apexClassCopy = configureClassViolations(apexClass);
-            List<Apex_Violation__c> violations = violationListByApexClassId.get(apexClass);
-
-            countViolationsForClass(apexClassCopy, violations);
-            apexClassesToUpdate.add(apexClassCopy);
-        }
-        try {
-            update apexClassesToUpdate;
-        }
-        catch (Exception ex) {
-            configureFailResponse('Failed to Calculate Apex Class Violations', ex.getMessage());
-        }
-    }
-
-    private static Apex_Class__c configureClassViolations(Apex_Class__c apexClass) {
-        return new Apex_Class__c(
-            Id = apexClass.Id,
-            Name = apexClass.Name,
-            Cost_to_Understand_Maintain__c = 0,
-            Cost_to_Change_Test__c = 0,
-            Code_Smells__c = 0,
-            Bad_Practices__c = 0,
-            Ineffectual_Tests__c = 0
-        );
-    }
-
-    private static void countViolationsForClass(Apex_Class__c apexClass, List<Apex_Violation__c> violations) {
-        for (Apex_Violation__c violation : violations) {
-            switch on violation.Category__c {
-                when 'Cost to Understand & Maintain' {
-                    apexClass.Cost_to_Understand_Maintain__c += violation.Starting_Complexity_Score__c;
-                }
-                when 'Cost to Change & Test' {
-                    apexClass.Cost_to_Change_Test__c += violation.Starting_Complexity_Score__c;
-                }
-                when 'Code Smell' {
-                    apexClass.Code_Smells__c += 1;
-                }
-                when 'Bad Practice' {
-                    apexClass.Bad_Practices__c += 1;
-                }
-                when 'Ineffectual Tests' {
-                    apexClass.Ineffectual_Tests__c += 1;
-                }
-            }
-        }
-        apexClass.Starting_Violation_Count__c = apexClass.Cost_to_Change_Test__c +
-            apexClass.Cost_to_Understand_Maintain__c + apexClass.Code_Smells__c +
-            apexClass.Bad_Practices__c + apexClass.Ineffectual_Tests__c;
     }
 
     private static void configureFailResponse(String title, String message) {
