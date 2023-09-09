@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Starting_Violation_Count__c</fullName>
-    <description>The total count of violations before this class was improved. Derived by adding Code Smells, Bad Practices, Cost to Change &amp; Test, Cost to Understand &amp; Maintain, and Ineffectual Tests at the time of initialization.</description>
+    <description>Calculated by summing all benchmark starting violations.</description>
     <externalId>false</externalId>
-    <inlineHelpText>The total count of violations before this class was improved. Derived by adding Code Smells, Bad Practices, Cost to Change &amp; Test, Cost to Understand &amp; Maintain, and Ineffectual Tests at the time of initialization.</inlineHelpText>
+    <formula>Starting_Cost_to_Understand_Maintain__c  + 
+Starting_Cost_to_Change_Test__c + 
+Starting_Code_Smells__c + 
+Starting_Bad_Practices__c + 
+Starting_Ineffectual_Tests__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Starting Violation Count</label>
-    <precision>9</precision>
+    <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>

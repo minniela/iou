@@ -31,16 +31,10 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Apex_Class__c.Bad_Practices__c</members>
-        <members>Apex_Class__c.Code_Smells__c</members>
-        <members>Apex_Class__c.Cost_to_Change_Test__c</members>
-        <members>Apex_Class__c.Cost_to_Understand_Maintain__c</members>
         <members>Apex_Class__c.Current_Code_Coverage__c</members>
         <members>Apex_Class__c.Has_Trigger_Logic__c</members>
-        <members>Apex_Class__c.Ineffectual_Tests__c</members>
         <members>Apex_Class__c.Related_Test_Suites__c</members>
         <members>Apex_Class__c.Starting_Code_Coverage__c</members>
-        <members>Apex_Class__c.Starting_Violation_Count__c</members>
         <members>Apex_Class__c.Test_Class__c</members>
         <members>Apex_Method__c.Apex_Class__c</members>
         <members>Apex_Method__c.Approved_Logic__c</members>
@@ -58,7 +52,6 @@
         <members>Apex_Method__c.UAT_Steps__c</members>
         <members>Apex_Violation__c.Apex_Class__c</members>
         <members>Apex_Violation__c.Category__c</members>
-        <members>Apex_Violation__c.Complexity_Score__c</members>
         <members>Apex_Violation__c.Ending_Line__c</members>
         <members>Apex_Violation__c.Is_Resolved__c</members>
         <members>Apex_Violation__c.Message__c</members>

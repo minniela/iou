@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Starting_Cost_to_Change_Test__c</fullName>
+    <description>Uses the read only field on Apex Violation to benchmark the starting point for Cyclomatic Complexity violations.</description>
+    <externalId>false</externalId>
+    <label>Starting Cost to Change &amp; Test</label>
+    <summarizedField>Apex_Violation__c.Starting_Complexity_Score__c</summarizedField>
+    <summaryFilterItems>
+        <field>Apex_Violation__c.Category__c</field>
+        <operation>equals</operation>
+        <value>Cost to Change &amp; Test</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Apex_Violation__c.Apex_Class__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
