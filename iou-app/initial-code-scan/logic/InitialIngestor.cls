@@ -88,7 +88,7 @@ public without sharing class InitialIngestor {
         );
         if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
             apexViolation.Method__c = parseMethodName(violationCache.message);
-            apexViolation.Complexity_Score__c = parseComplexityScore(violationCache.message);
+            apexViolation.Starting_Complexity_Score__c = parseComplexityScore(violationCache.message);
         }
         return apexViolation;
     }
@@ -126,10 +126,10 @@ public without sharing class InitialIngestor {
         for (Apex_Violation__c violation : violations) {
             switch on violation.Category__c {
                 when 'Cost to Understand & Maintain' {
-                    apexClass.Cost_to_Understand_Maintain__c += violation.Complexity_Score__c;
+                    apexClass.Cost_to_Understand_Maintain__c += violation.Starting_Complexity_Score__c;
                 }
                 when 'Cost to Change & Test' {
-                    apexClass.Cost_to_Change_Test__c += violation.Complexity_Score__c;
+                    apexClass.Cost_to_Change_Test__c += violation.Starting_Complexity_Score__c;
                 }
                 when 'Code Smell' {
                     apexClass.Code_Smells__c += 1;
