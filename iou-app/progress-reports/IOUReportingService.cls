@@ -4,7 +4,11 @@ public without sharing class IOUReportingService {
         Response response = new Response();
 
         if (scope == 'startingPoint') {
+            //todo: need new fields on Apex Violation to capture progress and retain original state
+            //  - Resolved Count
 
+            //todo: ensure Apex Violations have methods name set, as they are the only identity we need to
+            //      properly update complexity violations, the others can be resolved without distinction
         }
         else if (scope == 'currentState') {
 
