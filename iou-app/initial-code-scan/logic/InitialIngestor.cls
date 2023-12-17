@@ -85,6 +85,7 @@ public without sharing class InitialIngestor {
         return apexViolation;
     }
 
+    @TestVisible
     private static void configureFailResponse(String title, String message) {
         response.success = false;
         response.title = title;
