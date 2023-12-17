@@ -91,15 +91,13 @@ public without sharing class InitialIngestor {
         response.message = message;
     }
 
-    @TestVisible
-    private static String parseFileName(String unformattedFileName) {
+    public static String parseFileName(String unformattedFileName) {
         Integer indexOfFinalDirectory = unformattedFileName.lastIndexOf('/');
         String trimmedFileName = unformattedFileName.substring(indexOfFinalDirectory + 1);
         return trimmedFileName.remove('.cls').remove('"');
     }
 
-    @TestVisible
-    private static String parseMethodName(String message) {
+    public static String parseMethodName(String message) {
         Integer iFirstQuote = message.indexOf('\'') + 1; //increment 1 to move index past the single quote
         Integer iLastQuote = message.lastIndexOf('\'');
         String couldBeClassOrMethod = message.substring(iFirstQuote, iLastQuote);
@@ -109,8 +107,7 @@ public without sharing class InitialIngestor {
         return name;
     }
 
-    @TestVisible
-    private static Integer parseComplexityScore(String message) {
+    public static Integer parseComplexityScore(String message) {
         Integer score = 0;
         if (message.contains('cognitive')) {
             String mayRequireMoreParsing = message.substringBetween('cognitive complexity of ', ',');
