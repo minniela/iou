@@ -51,4 +51,13 @@ private class InitialIngestor_Test {
         apexViolations = [SELECT Id FROM Apex_Violation__c];
         Assert.areEqual(0, apexViolations.size());
     }
+
+    @IsTest
+    static void configureFailResponse_coverage() {
+        Test.startTest();
+        InitialIngestor.configureFailResponse('title', 'message');
+        Test.stopTest();
+
+        Assert.isFalse(InitialIngestor.response.success);
+    }
 }
