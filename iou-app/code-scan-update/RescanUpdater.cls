@@ -11,7 +11,7 @@ public without sharing class RescanUpdater {
     private static Map<String, Apex_Class__c> fetchApexClasses(List<ApexClass> apexClassCaches) {
         List<String> fileNames = new List<String>();
         for (ApexClass classCache : apexClassCaches) {
-            String fileName = InitialIngestor.parseFileName(classCache.fileName);
+            String fileName = PMDScanService.parseFileName(classCache.fileName);
             fileNames.add(fileName);
         }
 

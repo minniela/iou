@@ -32,7 +32,7 @@ public without sharing class InitialIngestor {
     private static Map<String, Apex_Class__c> createApexClasses(List<ApexClass> apexClassCaches) {
         Map<String, Apex_Class__c> apexClassesByName = new Map<String, Apex_Class__c>();
         for (ApexClass classCache : apexClassCaches) {
-            String fileName = parseFileName(classCache.fileName);
+            String fileName = PMDScanService.parseFileName(classCache.fileName);
             Apex_Class__c apexClass = new Apex_Class__c(
                 Name = fileName
             );
@@ -52,7 +52,7 @@ public without sharing class InitialIngestor {
     ) {
         List<Apex_Violation__c> apexViolations = new List<Apex_Violation__c>();
         for (ApexClass classCache : apexClassCaches) {
-            String fileNameKey = parseFileName(classCache.fileName);
+            String fileNameKey = PMDScanService.parseFileName(classCache.fileName);
             Apex_Class__c apexClass = apexClassesByName.get(fileNameKey);
 
             for (ApexViolation violationCache: classCache.violations) {
@@ -90,12 +90,6 @@ public without sharing class InitialIngestor {
         response.success = false;
         response.title = title;
         response.message = message;
-    }
-
-    public static String parseFileName(String unformattedFileName) {
-        Integer indexOfFinalDirectory = unformattedFileName.lastIndexOf('/');
-        String trimmedFileName = unformattedFileName.substring(indexOfFinalDirectory + 1);
-        return trimmedFileName.remove('.cls').remove('"');
     }
 
     public static String parseMethodName(String message) {
