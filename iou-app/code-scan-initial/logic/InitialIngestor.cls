@@ -80,7 +80,7 @@ public without sharing class InitialIngestor {
         );
         if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
             apexViolation.Method__c = PMDScanService.parseMethodName(violationCache.message);
-            apexViolation.Starting_Complexity_Score__c = parseComplexityScore(violationCache.message);
+            apexViolation.Starting_Complexity_Score__c = PMDScanService.parseComplexityScore(violationCache.message);
         }
         return apexViolation;
     }
@@ -90,21 +90,6 @@ public without sharing class InitialIngestor {
         response.success = false;
         response.title = title;
         response.message = message;
-    }
-
-    public static Integer parseComplexityScore(String message) {
-        Integer score = 0;
-        if (message.contains('cognitive')) {
-            String mayRequireMoreParsing = message.substringBetween('cognitive complexity of ', ',');
-            String finalString = mayRequireMoreParsing.contains('(') ?
-                mayRequireMoreParsing.substringBefore(' (') : mayRequireMoreParsing;
-            score = Integer.valueOf(finalString);
-        }
-        else {
-            score = Integer.valueOf(message.substringBetween('cyclomatic complexity of ', '.'));
-        }
-
-        return score;
     }
 
     public class ApexClass {

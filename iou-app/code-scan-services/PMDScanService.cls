@@ -15,4 +15,19 @@ public without sharing class PMDScanService {
             couldBeClassOrMethod.substringBefore('(') + '()' : couldBeClassOrMethod;
         return name;
     }
+
+    public static Integer parseComplexityScore(String message) {
+        Integer score = 0;
+        if (message.contains('cognitive')) {
+            String mayRequireMoreParsing = message.substringBetween('cognitive complexity of ', ',');
+            String finalString = mayRequireMoreParsing.contains('(') ?
+                mayRequireMoreParsing.substringBefore(' (') : mayRequireMoreParsing;
+            score = Integer.valueOf(finalString);
+        }
+        else {
+            score = Integer.valueOf(message.substringBetween('cyclomatic complexity of ', '.'));
+        }
+
+        return score;
+    }
 }
