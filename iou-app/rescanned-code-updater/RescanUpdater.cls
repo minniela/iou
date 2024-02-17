@@ -18,7 +18,7 @@ public without sharing class RescanUpdater {
         Map<String, Apex_Class__c> apexClassesByName = new Map<String, Apex_Class__c>();
         for (Apex_Class__c apexClass: [
             SELECT Id, Name,
-            (SELECT Id, Rule__c FROM Apex_Violations__r)
+            (SELECT Id, Rule__c, Method__c, Current_Complexity_Score__c FROM Apex_Violations__r)
             FROM Apex_Class__c
             WHERE Name IN :fileNames
         ]) {
