@@ -28,6 +28,9 @@ public without sharing class RescanUpdater {
     }
 
     private static void updateApexViolations(List<ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByStrings) {
+        for (ApexClass apexClass : apexClassCaches) {
+            Apex_Class__c savedApexClass = apexClassesByStrings.get(apexClass.fileName);
+        }
         /** todo:
          *     1. Check for usages of Starting_Complexity_Score__c and Current_Complexity_Score__c
          *     2. Change field name to Complexity Score and delete Starting_Complexity_Score__c
