@@ -46,7 +46,10 @@ public without sharing class RescanUpdater {
     private static Map<String, List<Apex_Violation__c>> sortViolationsIntoRuleNameLists(List<Apex_Violation__c> violations) {
         Map<String, List<Apex_Violation__c>> violationsByRule = new Map<String, List<Apex_Violation__c>>();
         for (Apex_Violation__c apexViolation : violations) {
-
+            if (!violationsByRule.containsKey(apexViolation.Rule__c)) {
+                violationsByRule.put(apexViolation.Rule__c, new List<Apex_Violation__c>());
+            }
+            violationsByRule.get(apexViolation.Rule__c).add(apexViolation);
         }
         return violationsByRule;
     }
