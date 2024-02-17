@@ -79,7 +79,7 @@ public without sharing class InitialIngestor {
             Apex_Class__c = apexClass.Id
         );
         if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
-            apexViolation.Method__c = parseMethodName(violationCache.message);
+            apexViolation.Method__c = PMDScanService.parseMethodName(violationCache.message);
             apexViolation.Starting_Complexity_Score__c = parseComplexityScore(violationCache.message);
         }
         return apexViolation;
@@ -90,16 +90,6 @@ public without sharing class InitialIngestor {
         response.success = false;
         response.title = title;
         response.message = message;
-    }
-
-    public static String parseMethodName(String message) {
-        Integer iFirstQuote = message.indexOf('\'') + 1; //increment 1 to move index past the single quote
-        Integer iLastQuote = message.lastIndexOf('\'');
-        String couldBeClassOrMethod = message.substring(iFirstQuote, iLastQuote);
-        //for Cognitive Complexity score the method should be the class name without '()'
-        String name = couldBeClassOrMethod.contains('(') ?
-            couldBeClassOrMethod.substringBefore('(') + '()' : couldBeClassOrMethod;
-        return name;
     }
 
     public static Integer parseComplexityScore(String message) {
