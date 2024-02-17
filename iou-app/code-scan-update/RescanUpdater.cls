@@ -38,13 +38,16 @@ public without sharing class RescanUpdater {
 
             List<Apex_Violation__c> unresolvedViolations = new List<Apex_Violation__c>();
             for (PMDScanService.ApexViolation apexViolation : apexClass.violations) {
-                if (savedViolationsByRule.containsKey(apexViolation.ruleName) && savedViolationsByRule.get(apexViolation.ruleName).size() > 0) {
-                    Apex_Violation__c unresolvedViolation = savedViolationsByRule.get(apexViolation.ruleName).remove(0);
-                    unresolvedViolation = updateViolation(apexViolation, unresolvedViolation);
+                if (savedViolationsByRule.containsKey(apexViolation.ruleName)) {
+                    List<Apex_Violation__c> foundViolations = savedViolationsByRule.get(apexViolation.ruleName);
+                    if (foundViolations.size() > 0) {continue;}
 
+                    Apex_Violation__c unresolvedViolation = matchExistingViolation(apexViolation, foundViolations);
+                    unresolvedViolation = updateViolation(apexViolation, unresolvedViolation);
                     unresolvedViolations.add(unresolvedViolation);
                 }
             }
+            upsert unresolvedViolations;
 
             List<Apex_Violation__c> resolvedViolations = new List<Apex_Violation__c>();
             for (String className : savedViolationsByRule.keySet()) {
@@ -53,6 +56,7 @@ public without sharing class RescanUpdater {
                     resolvedViolation.Current_Complexity_Score__c = 0;
                 }
             }
+            upsert resolvedViolations;
         }
     }
 
@@ -67,16 +71,38 @@ public without sharing class RescanUpdater {
         return violationsByRule;
     }
 
+    private static Apex_Violation__c matchExistingViolation(PMDScanService.ApexViolation apexViolation, List<Apex_Violation__c> foundViolations) {
+        Apex_Violation__c unresolvedViolation = null;
+        if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(apexViolation.ruleName)) {
+
+            String methodName = PMDScanService.parseMethodName(apexViolation.message);
+            for (Integer i = 0 ; i < foundViolations.size(); i++) {
+                if (foundViolations[i].Method__c == methodName) {
+                    unresolvedViolation = foundViolations.remove(foundViolations.indexOf(foundViolations[i]));
+                    unresolvedViolation.Current_Complexity_Score__c = PMDScanService.parseComplexityScore(apexViolation.message);
+                    break;
+                }
+            }
+
+            if (unresolvedViolation == null) {
+                unresolvedViolation.Apex_Class__c = foundViolations.get(0).Apex_Class__c;
+                unresolvedViolation.Rule__c = apexViolation.ruleName;
+                unresolvedViolation.Category__c = CategoryTranslatorService.translate(apexViolation.ruleName);
+                unresolvedViolation.Reference__c = apexViolation.url;
+                unresolvedViolation.Method__c = methodName;
+                unresolvedViolation.Current_Complexity_Score__c = PMDScanService.parseComplexityScore(apexViolation.message);
+            }
+        }
+        else {
+            unresolvedViolation = foundViolations.remove(0);
+        }
+        return unresolvedViolation;
+    }
+
     private static Apex_Violation__c updateViolation(PMDScanService.ApexViolation inMemoryViolation, Apex_Violation__c apexViolation) {
         apexViolation.Message__c = inMemoryViolation.message.trim();
         apexViolation.Starting_Line__c = Integer.valueOf(inMemoryViolation.line);
         apexViolation.Ending_Line__c = Integer.valueOf(inMemoryViolation.endLine);
-
-        if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(inMemoryViolation.ruleName) &&
-            apexViolation.Method__c == PMDScanService.parseMethodName(inMemoryViolation.message)
-        ) {
-            apexViolation.Current_Complexity_Score__c = PMDScanService.parseComplexityScore(inMemoryViolation.message);
-        }
         return apexViolation;
     }
 }
