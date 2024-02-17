@@ -34,9 +34,6 @@ public without sharing class RescanUpdater {
             Apex_Class__c savedApexClass = apexClassesByStrings.get(fileName);
         }
         /** todo:
-         *     1. Check for usages of Starting_Complexity_Score__c and Current_Complexity_Score__c
-         *     2. Change field name to Complexity Score and delete Starting_Complexity_Score__c
-         *     3. Add new Complexity_Score__c to the SOQL above
          *     5. any violation not found in the cache should get Is_Resolved__c = true
         */
 
