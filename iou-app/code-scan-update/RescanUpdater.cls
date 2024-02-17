@@ -18,7 +18,7 @@ public without sharing class RescanUpdater {
         Map<String, Apex_Class__c> apexClassesByName = new Map<String, Apex_Class__c>();
         for (Apex_Class__c apexClass: [
             SELECT Id, Name,
-            (SELECT Id, Rule__c FROM Apex_Violations__r)
+            (SELECT Id, Rule__c, Method__c, Current_Complexity_Score__c FROM Apex_Violations__r)
             FROM Apex_Class__c
             WHERE Name IN :fileNames
         ]) {
@@ -28,12 +28,13 @@ public without sharing class RescanUpdater {
     }
 
     private static void updateApexViolations(List<ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByStrings) {
+        for (ApexClass apexClass : apexClassCaches) {
+            Apex_Class__c savedApexClass = apexClassesByStrings.get(apexClass.fileName);
+        }
         /** todo:
          *     1. Check for usages of Starting_Complexity_Score__c and Current_Complexity_Score__c
          *     2. Change field name to Complexity Score and delete Starting_Complexity_Score__c
          *     3. Add new Complexity_Score__c to the SOQL above
-         *     3. Add Has_Improved__c checkbox on Apex_Violation__c
-         *     4. On Upsert, all violations that are touched are marked as Has_Improved__c, as surrounding context is better
          *     5. any violation not found in the cache should get Is_Resolved__c = true
         */
 
