@@ -18,8 +18,10 @@ public without sharing class RescanUpdater {
 
         Map<String, Apex_Class__c> apexClassesByName = new Map<String, Apex_Class__c>();
         for (Apex_Class__c apexClass: [
-            SELECT Id, Name,
-            (SELECT Id, Rule__c, Method__c, Current_Complexity_Score__c FROM Apex_Violations__r)
+            SELECT Id, Name, (
+                SELECT Is_Resolved__c, Rule__c, Method__c, Current_Complexity_Score__c, Starting_Line__c, Ending_Line__c
+                FROM Apex_Violations__r
+            )
             FROM Apex_Class__c
             WHERE Name IN :fileNames
         ]) {
@@ -32,15 +34,26 @@ public without sharing class RescanUpdater {
         for (PMDScanService.ApexClass apexClass : apexClassCaches) {
             String fileName = PMDScanService.parseFileName(apexClass.fileName);
             Apex_Class__c savedApexClass = apexClassesByStrings.get(fileName);
-
-            List<PMDScanService.ApexViolation> foundViolations = apexClass.violations;
             Map<String, List<Apex_Violation__c>> savedViolationsByRule = sortViolationsIntoRuleNameLists(savedApexClass.Apex_Violations__r);
+
+            List<Apex_Violation__c> unresolvedViolations = new List<Apex_Violation__c>();
+            for (PMDScanService.ApexViolation apexViolation : apexClass.violations) {
+                if (savedViolationsByRule.containsKey(apexViolation.ruleName) && savedViolationsByRule.get(apexViolation.ruleName).size() > 0) {
+                    Apex_Violation__c unresolvedViolation = savedViolationsByRule.get(apexViolation.ruleName).remove(0);
+                    unresolvedViolation = updateViolation(apexViolation, unresolvedViolation);
+
+                    unresolvedViolations.add(unresolvedViolation);
+                }
+            }
+
+            List<Apex_Violation__c> resolvedViolations = new List<Apex_Violation__c>();
+            for (String className : savedViolationsByRule.keySet()) {
+                for (Apex_Violation__c resolvedViolation: savedViolationsByRule.get(className)) {
+                    resolvedViolation.Is_Resolved__c = true;
+                    resolvedViolation.Current_Complexity_Score__c = 0;
+                }
+            }
         }
-        /** todo:
-         *     5. any violation not found in the cache should get Is_Resolved__c = true
-        */
-
-
     }
 
     private static Map<String, List<Apex_Violation__c>> sortViolationsIntoRuleNameLists(List<Apex_Violation__c> violations) {
@@ -54,15 +67,15 @@ public without sharing class RescanUpdater {
         return violationsByRule;
     }
 
-    private static Apex_Violation__c configureViolation(PMDScanService.ApexViolation violationCache, Apex_Class__c apexClass) {
-        Apex_Violation__c apexViolation = new Apex_Violation__c(
-            Message__c = violationCache.message.trim(),
-            Starting_Line__c = Integer.valueOf(violationCache.line),
-            Ending_Line__c = Integer.valueOf(violationCache.endLine)
-        );
-        if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
-            apexViolation.Method__c = PMDScanService.parseMethodName(violationCache.message);
-            apexViolation.Starting_Complexity_Score__c = PMDScanService.parseComplexityScore(violationCache.message);
+    private static Apex_Violation__c updateViolation(PMDScanService.ApexViolation inMemoryViolation, Apex_Violation__c apexViolation) {
+        apexViolation.Message__c = inMemoryViolation.message.trim();
+        apexViolation.Starting_Line__c = Integer.valueOf(inMemoryViolation.line);
+        apexViolation.Ending_Line__c = Integer.valueOf(inMemoryViolation.endLine);
+
+        if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(inMemoryViolation.ruleName) &&
+            apexViolation.Method__c == PMDScanService.parseMethodName(inMemoryViolation.message)
+        ) {
+            apexViolation.Current_Complexity_Score__c = PMDScanService.parseComplexityScore(inMemoryViolation.message);
         }
         return apexViolation;
     }
