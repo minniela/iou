@@ -2,15 +2,16 @@ public without sharing class RescanUpdater {
 
     public static void startUpdate(String pmdJSON) {
 
-        List<ApexClass> apexClassCache = (List<ApexClass>) JSON.deserialize(pmdJSON, List<ApexClass>.class);
+        List<PMDScanService.ApexClass> apexClassCache =
+            (List<PMDScanService.ApexClass>) JSON.deserialize(pmdJSON, List<PMDScanService.ApexClass>.class);
         Map<String, Apex_Class__c> apexClassesByName = fetchApexClasses(apexClassCache);
 
         updateApexViolations(apexClassCache, apexClassesByName);
     }
 
-    private static Map<String, Apex_Class__c> fetchApexClasses(List<ApexClass> apexClassCaches) {
+    private static Map<String, Apex_Class__c> fetchApexClasses(List<PMDScanService.ApexClass> apexClassCaches) {
         List<String> fileNames = new List<String>();
-        for (ApexClass classCache : apexClassCaches) {
+        for (PMDScanService.ApexClass classCache : apexClassCaches) {
             String fileName = PMDScanService.parseFileName(classCache.fileName);
             fileNames.add(fileName);
         }
@@ -27,8 +28,8 @@ public without sharing class RescanUpdater {
         return apexClassesByName;
     }
 
-    private static void updateApexViolations(List<ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByStrings) {
-        for (ApexClass apexClass : apexClassCaches) {
+    private static void updateApexViolations(List<PMDScanService.ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByStrings) {
+        for (PMDScanService.ApexClass apexClass : apexClassCaches) {
             Apex_Class__c savedApexClass = apexClassesByStrings.get(apexClass.fileName);
         }
         /** todo:
@@ -39,19 +40,5 @@ public without sharing class RescanUpdater {
         */
 
 
-    }
-
-    public class ApexClass {
-        public String fileName;
-        public List<ApexViolation> violations;
-    }
-
-    public class ApexViolation {
-        public String ruleName;
-        public String message;
-        public String category;
-        public String url;
-        public String line;
-        public String endLine;
     }
 }

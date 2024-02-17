@@ -30,4 +30,18 @@ public without sharing class PMDScanService {
 
         return score;
     }
+
+    public class ApexClass {
+        public String fileName;
+        public List<ApexViolation> violations;
+    }
+
+    public class ApexViolation {
+        public String ruleName;
+        public String message;
+        public String category;
+        public String url;
+        public String line;
+        public String endLine;
+    }
 }
