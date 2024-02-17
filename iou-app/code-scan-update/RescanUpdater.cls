@@ -30,7 +30,8 @@ public without sharing class RescanUpdater {
 
     private static void updateApexViolations(List<PMDScanService.ApexClass> apexClassCaches, Map<String, Apex_Class__c> apexClassesByStrings) {
         for (PMDScanService.ApexClass apexClass : apexClassCaches) {
-            Apex_Class__c savedApexClass = apexClassesByStrings.get(apexClass.fileName);
+            String fileName = PMDScanService.parseFileName(apexClass.fileName);
+            Apex_Class__c savedApexClass = apexClassesByStrings.get(fileName);
         }
         /** todo:
          *     1. Check for usages of Starting_Complexity_Score__c and Current_Complexity_Score__c
