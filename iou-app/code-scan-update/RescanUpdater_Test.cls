@@ -3,6 +3,27 @@ private class RescanUpdater_Test {
 
     @IsTest
     static void testBehavior() {
+
+        Test.startTest();
+        RescanUpdater.startUpdate(getSamplePayload());
+        Test.stopTest();
+
+        Apex_Class__c updatedClass = [
+            SELECT Id, (SELECT Current_Complexity_Score__c, Method__c, Is_Resolved__c FROM Apex_Violations__r)
+            FROM Apex_Class__c
+            WHERE Name = 'TestOne'
+            LIMIT 1
+        ];
+
+        Integer countOfResolved = 0;
+        for (Apex_Violation__c apexViolation : updatedClass.Apex_Violations__r) {
+            if (apexViolation.Method__c == 'testMethod1()') {
+                Assert.areEqual(124, apexViolation.Current_Complexity_Score__c,
+                    'The payload indicates the complexity score should be 124.');
+            }
+            countOfResolved += apexViolation.Is_Resolved__c ? 1 : 0;
+        }
+        Assert.areEqual(8, countOfResolved, 'As the payload only has 2 violations, the other 8 should be resolved.');
     }
 
     @TestSetup
@@ -27,12 +48,12 @@ private class RescanUpdater_Test {
         return new Apex_Violation__c(
             Apex_Class__c = apexClassId,
             Rule__c = flip ? 'AvoidDeeplyNestedIfStmts' : 'CognitiveComplexity',
-            Method__c = flip ? '' : 'testMethod' + index
+            Method__c = flip ? '' : 'testMethod' + index + '()'
         );
     }
 
     private static String getSamplePayload() {
-        return '{' +
+        return '[{' +
             '    "engine": "pmd-custom",' +
             '    "fileName": "/IdeaProjects/iou-app/force-app/main/default/classes/TestOne.cls",' +
             '    "violations": [' +
@@ -48,17 +69,17 @@ private class RescanUpdater_Test {
             '        "message": "The method \'testMethod1(Database.BatchableContext, List<Lead>)\' has a cognitive complexity of 124, current threshold is 15"' +
             '      },' +
             '      {' +
-            '        "line": "87",\n' +
-            '        "column": "7",\n' +
-            '        "endLine": "87",\n' +
-            '        "endColumn": "8",\n' +
-            '        "severity": 3,\n' +
-            '        "ruleName": "AvoidDeeplyNestedIfStmts",\n' +
-            '        "category": "Design",\n' +
-            '        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#avoiddeeplynestedifstmts",\n' +
-            '        "message": "\\nDeeply nested if..then statements are hard to read\\n"\n' +
+            '        "line": "87",' +
+            '        "column": "7",' +
+            '        "endLine": "87",' +
+            '        "endColumn": "8",' +
+            '        "severity": 3,' +
+            '        "ruleName": "AvoidDeeplyNestedIfStmts",' +
+            '        "category": "Design",' +
+            '        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#avoiddeeplynestedifstmts",' +
+            '        "message": "Deeply nested if..then statements are hard to read"' +
             '      }' +
             '     ]' +
-            '   }';
+            '   }]';
     }
 }
