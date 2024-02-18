@@ -1,0 +1,68 @@
+
+Typically, Apex_Class__c records are created during the initial-scan-process[link]. Once the system has been
+populated by the initial code scan violations, you have a few options.
+
+1. Begin a trigger-automation-audit[link].
+2. Pick and choose a class to refactor and start.
+3. Take a novel approach, with high quality coordination and communication.
+
+SOC Levels
+
+  Instead of a "right vs wrong" or "the correct architecture", our approach is to view Apex Classes in the context of
+  its Separation of Concerns (SOC). For our systematic purposes, we can consider there to be four SOC Levels.
+
+  1. Level 0 - code with collapsed architecture, derelict architecture, or in a state of instructional lines code that
+  do not provide context. In the last case, this is code a computer can read, but it's not written for humans. The
+  code in this state has the most original count Apex Violations.
+  2. Level 1 - code with repaired architecture, clear functions and variables written and organized with a human
+  reader in mind, limited to the intra-class level. Most Apex Violations will have been resolved, but some complexity
+  violations may still remain.
+  3. Level 2 - a higher level of architecture has emerged, considering inter-class interactions. This usually results
+  in more specific, focused classes with maximum reuse. At this point, higher level understandings about the business
+  processes and relationships between/among business processes begins to emerge. All violations should be resolved
+  at this point.
+  4. Level 3 - finally the code is organized at the Domain Level, grouping similar components together. Each domain
+  could be its own Org-Dependent Unlocked Package, and/or can be documented in well-understood terms. All future
+  work is at the domain level, respecting the entire domain Software Development Lifecycle and Process Development
+  Lifecycle and its most suitable architecture.
+
+  The only truly required architectural achievement is going from Level 0 to Leve 1. And it doesn't have to be the
+  entire code base to be effective. The Trigger Context is pretty important to tame and master, but outside of that
+  it is choose-your-own-adventure. Where does your team have troubles? Where do you continually trip? Start there,
+  define a boundary, and don't get pulled away. If you do find you got pulled away, simply start over and cut the
+  scope in half. The goal is to find success and establish a Refactoring Process.
+
+The Refactoring Process
+
+  The refactoring process is a mechanism of taking difficult, hard to understand and change code, and turn it into
+  clean, clear, violation free code. You build the confidence to change successfully, and you iterate on that
+  success. Therefore, finding the first success is the most crucial.
+
+  The ability to understand and clarify scope is one key to success. In orgs with great Tech Debt, there is a lot
+  going on. It is no accident the Tech Debt has amassed, and this will create a type of challenging circumstance.
+  You should have buy in by now, so let's just focus on getting the job done.
+
+  The best place to start is one class with one test. If you have a team of developers, they can each take their own
+  class and test. Classes with higher violations counts may be more challenging than classes with less, therefore
+  classes can be split accordingly. No problem starting with a simpler class to learn the ropes and acquire skills.
+
+  The goal is to take that one class through the entire process and deploy the changes to production. Getting your
+  first deployment under your fingers is the first step to a cleaner org.
+
+Apex Class, meet Apex Test, talk ...
+
+  One thing you will always want to do is to relate the Test Class (Test_Class__c). If your org doesn't use tests,
+  either that must change, or I recommend not going further with this app. Without unit tests, you cannot safely
+  re-architect your org. Unit tests are like struts that uphold the architecture and allow it to safely change.
+
+    "The primary purpose of the struts is to support the weight of the vehicle while also absorbing surface impacts
+    and ensuring a smooth ride." - by Jessica Shea Choksey, J.D. Power, Mar 11, 2020,
+    (https://www.jdpower.com/Cars/Shopping-Guides/what-are-struts-on-a-car)
+
+  Without unit tests, you will not have a smooth ride and will have to absorb the surface impacts yourself. Ok, nuff said.
+
+Oh, you use Test Suites? Sweet!
+
+  There may be times when one Class is covered by more than one Test Class. In this case, you can pull/create a Test Suite,
+  commit it to the repository, and add its name to Related_Test_Suites__c. If there is a Test Suite, then Test Class
+  is not required, but still preferred.
