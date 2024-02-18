@@ -19,7 +19,8 @@ public without sharing class RescanUpdater {
         Map<String, Apex_Class__c> apexClassesByName = new Map<String, Apex_Class__c>();
         for (Apex_Class__c apexClass: [
             SELECT Id, Name, (
-                SELECT Is_Resolved__c, Rule__c, Method__c, Current_Complexity_Score__c, Starting_Line__c, Ending_Line__c
+                SELECT Is_Resolved__c, Apex_Class__c, Rule__c, Method__c, Current_Complexity_Score__c,
+                    Starting_Line__c, Ending_Line__c
                 FROM Apex_Violations__r
             )
             FROM Apex_Class__c
@@ -40,7 +41,7 @@ public without sharing class RescanUpdater {
             for (PMDScanService.ApexViolation apexViolation : apexClass.violations) {
                 if (savedViolationsByRule.containsKey(apexViolation.ruleName)) {
                     List<Apex_Violation__c> foundViolations = savedViolationsByRule.get(apexViolation.ruleName);
-                    if (foundViolations.size() > 0) {continue;}
+                    if (foundViolations.isEmpty()) {continue;}
 
                     Apex_Violation__c unresolvedViolation = matchExistingViolation(apexViolation, foundViolations);
                     unresolvedViolation = updateViolation(apexViolation, unresolvedViolation);
@@ -85,12 +86,14 @@ public without sharing class RescanUpdater {
             }
 
             if (unresolvedViolation == null) {
-                unresolvedViolation.Apex_Class__c = foundViolations.get(0).Apex_Class__c;
-                unresolvedViolation.Rule__c = apexViolation.ruleName;
-                unresolvedViolation.Category__c = CategoryTranslatorService.translate(apexViolation.ruleName);
-                unresolvedViolation.Reference__c = apexViolation.url;
-                unresolvedViolation.Method__c = methodName;
-                unresolvedViolation.Current_Complexity_Score__c = PMDScanService.parseComplexityScore(apexViolation.message);
+                unresolvedViolation = new Apex_Violation__c(
+                    Apex_Class__c = foundViolations.get(0).Apex_Class__c,
+                    Rule__c = apexViolation.ruleName,
+                    Category__c = CategoryTranslatorService.translate(apexViolation.ruleName),
+                    Reference__c = apexViolation.url,
+                    Method__c = methodName,
+                    Current_Complexity_Score__c = PMDScanService.parseComplexityScore(apexViolation.message)
+                );
             }
         }
         else {
