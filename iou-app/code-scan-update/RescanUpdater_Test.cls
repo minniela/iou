@@ -2,7 +2,7 @@
 private class RescanUpdater_Test {
 
     @IsTest
-    static void testBehavior() {
+    static void should_correctly_parse_updated_payload_to_update_existing_violations() {
 
         Test.startTest();
         RescanUpdater.startUpdate(getSamplePayload());
