@@ -55,9 +55,10 @@ public without sharing class RescanUpdater {
                 for (Apex_Violation__c resolvedViolation: savedViolationsByRule.get(className)) {
                     resolvedViolation.Is_Resolved__c = true;
                     resolvedViolation.Current_Complexity_Score__c = 0;
+                    resolvedViolations.add(resolvedViolation);
                 }
             }
-            upsert resolvedViolations;
+            update resolvedViolations;
         }
     }
 
