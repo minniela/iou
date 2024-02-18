@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Cost_to_Change_Test__c</fullName>
+    <description>Totals the number of cyclomatic complexity violations not yet resolved.</description>
+    <externalId>false</externalId>
+    <label>Current Cost to Change &amp; Test</label>
+    <summarizedField>Apex_Violation__c.Current_Complexity_Score__c</summarizedField>
+    <summaryFilterItems>
+        <field>Apex_Violation__c.Is_Resolved__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Apex_Violation__c.Category__c</field>
+        <operation>equals</operation>
+        <value>Cost to Change &amp; Test</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Apex_Violation__c.Apex_Class__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
