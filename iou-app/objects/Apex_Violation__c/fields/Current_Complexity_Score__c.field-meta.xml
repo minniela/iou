@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Complexity_Score__c</fullName>
+    <description>This value is used to store updates on subsequent PMD scans. By providing a separate field, we can preserve the starting score.</description>
+    <externalId>false</externalId>
+    <label>Current Complexity Score</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
