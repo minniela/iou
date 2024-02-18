@@ -14,12 +14,18 @@ private class RescanUpdater_Test {
             WHERE Name = 'TestOne'
             LIMIT 1
         ];
+        Assert.areEqual(11, updatedClass.Apex_Violations__r.size(),
+            'There should be 10 existing violations plus one novel one, making 11 total.');
 
         Integer countOfResolved = 0;
         for (Apex_Violation__c apexViolation : updatedClass.Apex_Violations__r) {
             if (apexViolation.Method__c == 'testMethod1()') {
                 Assert.areEqual(124, apexViolation.Current_Complexity_Score__c,
                     'The payload indicates the complexity score should be 124.');
+            }
+            else if (apexViolation.Method__c == 'novelMethod()') {
+                Assert.areEqual(111, apexViolation.Current_Complexity_Score__c,
+                    'The payload contains a new method, and 111 is the expected complexity score');
             }
             countOfResolved += apexViolation.Is_Resolved__c ? 1 : 0;
         }
@@ -67,6 +73,17 @@ private class RescanUpdater_Test {
             '        "category": "Design",' +
             '        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#cognitivecomplexity",' +
             '        "message": "The method \'testMethod1(Database.BatchableContext, List<Lead>)\' has a cognitive complexity of 124, current threshold is 15"' +
+            '      },' +
+            '      {' +
+            '        "line": "232",' +
+            '        "column": "14",' +
+            '        "endLine": "331",' +
+            '        "endColumn": "1",' +
+            '        "severity": 3,' +
+            '        "ruleName": "CognitiveComplexity",' +
+            '        "category": "Design",' +
+            '        "url": "https://pmd.github.io/pmd-6.48.0/pmd_rules_apex_design.html#cognitivecomplexity",' +
+            '        "message": "The method \'novelMethod(Database.BatchableContext, List<Lead>)\' has a cognitive complexity of 111, current threshold is 15"' +
             '      },' +
             '      {' +
             '        "line": "87",' +
