@@ -14,43 +14,13 @@
     </classAccesses>
     <description>Full control of the IOU App</description>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Apex_Class__c.Bad_Practices__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Apex_Class__c.Code_Smells__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Apex_Class__c.Cost_to_Change_Test__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Apex_Class__c.Cost_to_Understand_Maintain__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Apex_Class__c.Current_Code_Coverage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Apex_Class__c.Current_Violation_Count__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Apex_Class__c.Has_Trigger_Logic__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Apex_Class__c.Ineffectual_Tests__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -61,11 +31,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apex_Class__c.Starting_Code_Coverage__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Apex_Class__c.Starting_Violation_Count__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -136,11 +101,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Apex_Violation__c.Category__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Apex_Violation__c.Complexity_Score__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
