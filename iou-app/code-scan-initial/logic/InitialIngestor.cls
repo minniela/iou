@@ -82,6 +82,7 @@ public without sharing class InitialIngestor {
         if (new List<String>{'CognitiveComplexity', 'CyclomaticComplexity'}.contains(violationCache.ruleName)) {
             apexViolation.Method__c = PMDScanService.parseMethodName(violationCache.message);
             apexViolation.Starting_Complexity_Score__c = PMDScanService.parseComplexityScore(violationCache.message);
+            apexViolation.Current_Complexity_Score__c = apexViolation.Starting_Complexity_Score__c;
         }
         return apexViolation;
     }
