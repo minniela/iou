@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apex_Method_Compact</fullName>
+    <fields>Method_Name__c</fields>
+    <fields>Status__c</fields>
+    <fields>Review_Sequence__c</fields>
+    <fields>Apex_Class__c</fields>
+    <label>Apex Method Compact</label>
+</CompactLayout>

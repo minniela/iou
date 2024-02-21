@@ -89,6 +89,8 @@
     </types>
     <types>
         <members>IOU_Home</members>
+        <members>Apex_Class_Record_Page</members>
+        <members>Apex_Method_Record_Page</members>
         <name>FlexiPage</name>
     </types>
     <types>
@@ -98,6 +100,21 @@
     <types>
         <members>Apex_Class__c.Trigger_Audit_View</members>
         <name>ListView</name>
+    </types>
+    <types>
+        <members>Apex_Class__c-Apex Class Layout</members>
+        <members>Apex_Method__c-Apex Method Layout</members>
+        <members>Apex_Violation__c-Apex Violation Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Apex_Method_Lifecycle</members>
+        <name>PathAssistant</name>
+    </types>
+    <types>
+        <members>Apex_Method__c.Apex_Method_Compact</members>
+        <members>Apex_Class__c.Apex_Class_Compact</members>
+        <name>CompactLayout</name>
     </types>
     <version>58.0</version>
 </Package>
