@@ -116,5 +116,12 @@
         <members>Apex_Class__c.Apex_Class_Compact</members>
         <name>CompactLayout</name>
     </types>
+    <types>
+        <members>unfiled$public</members>
+        <members>unfiled$public/IOU_Initial_Tech_Debt_Violation_Report_rkb</members>
+        <members>unfiled$public/IOU_Most_Wanted_bK9</members>
+        <members>unfiled$public/IOU_Test_Findings_wOq</members>
+        <name>Report</name>
+    </types>
     <version>58.0</version>
 </Package>
