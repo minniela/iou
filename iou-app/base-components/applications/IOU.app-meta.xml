@@ -16,6 +16,8 @@
     <tabs>Apex_Class__c</tabs>
     <tabs>Apex_Method__c</tabs>
     <tabs>Apex_Violation__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>IOU_UtilityBar1</utilityBar>
     <workspaceConfig>
