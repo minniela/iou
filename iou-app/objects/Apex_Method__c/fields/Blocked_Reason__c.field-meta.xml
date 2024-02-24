@@ -14,9 +14,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Team Review Required, External Input Required, Break Fix Analysis</fullName>
+                <fullName>Needs Team Review</fullName>
                 <default>false</default>
-                <label>Team Review Required, External Input Required, Break Fix Analysis</label>
+                <label>Needs Team Review</label>
+            </value>
+            <value>
+                <fullName>Needs External Review</fullName>
+                <default>false</default>
+                <label>Needs External Review</label>
+            </value>
+            <value>
+                <fullName>Needs Break/Fix Review</fullName>
+                <default>false</default>
+                <label>Needs Break/Fix Review</label>
             </value>
         </valueSetDefinition>
     </valueSet>
