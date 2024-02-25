@@ -117,13 +117,14 @@
         <name>CompactLayout</name>
     </types>
     <types>
-        <members>unfiled$public</members>
-        <members>unfiled$public/IOU_Initial_Tech_Debt_Violation_Report_rkb</members>
-        <members>unfiled$public/IOU_Most_Wanted_bK9</members>
-        <members>unfiled$public/IOU_Tech_Debt_Progress_Report_LxW</members>
-        <members>unfiled$public/IOU_Test_Findings_wOq</members>
-        <members>unfiled$public/IOU_Restored_Apex_Classes_zJE</members>
-        <members>unfiled$public/IOU_Success_Metrics_vnc</members>
+        <members>IOUFolder/IOU_Initial_Tech_Debt_Violation_Report_rkb</members>
+        <members>IOUFolder/IOU_Most_Wanted_bK9</members>
+        <members>IOUFolder/IOU_Restored_Apex_Classes_zJE</members>
+        <members>IOUFolder/IOU_Success_Metrics_vnc</members>
+        <members>IOUFolder/IOU_Tech_Debt_Progress_Report_LxW</members>
+        <members>IOUFolder/IOU_Test_Findings_wOq</members>
+        <members>IOUFolder/Trigger_Related_Findings_Rcf</members>
+        <members>IOUFolder</members>
         <name>Report</name>
     </types>
     <types>
