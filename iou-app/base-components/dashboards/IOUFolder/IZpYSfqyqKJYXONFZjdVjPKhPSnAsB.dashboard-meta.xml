@@ -27,7 +27,7 @@
                 <indicatorHighColor>#12BF3D</indicatorHighColor>
                 <indicatorLowColor>#8933C1</indicatorLowColor>
                 <indicatorMiddleColor>#60BEE6</indicatorMiddleColor>
-                <report>unfiled$public/IOU_Success_Metrics_vnc</report>
+                <report>IOUFolder/IOU_Success_Metrics_vnc</report>
                 <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -52,7 +52,7 @@
                 <indicatorHighColor>#12BF3D</indicatorHighColor>
                 <indicatorLowColor>#8933C1</indicatorLowColor>
                 <indicatorMiddleColor>#60BEE6</indicatorMiddleColor>
-                <report>unfiled$public/IOU_Success_Metrics_vnc</report>
+                <report>IOUFolder/IOU_Success_Metrics_vnc</report>
                 <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -77,7 +77,7 @@
                 <indicatorHighColor>#12BF3D</indicatorHighColor>
                 <indicatorLowColor>#8933C1</indicatorLowColor>
                 <indicatorMiddleColor>#60BEE6</indicatorMiddleColor>
-                <report>unfiled$public/IOU_Success_Metrics_vnc</report>
+                <report>IOUFolder/IOU_Success_Metrics_vnc</report>
                 <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>6</rowIndex>
@@ -102,7 +102,7 @@
                 <indicatorHighColor>#12BF3D</indicatorHighColor>
                 <indicatorLowColor>#8933C1</indicatorLowColor>
                 <indicatorMiddleColor>#60BEE6</indicatorMiddleColor>
-                <report>unfiled$public/IOU_Success_Metrics_vnc</report>
+                <report>IOUFolder/IOU_Success_Metrics_vnc</report>
                 <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>6</rowIndex>
@@ -154,7 +154,7 @@
                 </flexComponentProperties>
                 <groupingSortProperties/>
                 <header>IOU Restored Apex Classes</header>
-                <report>unfiled$public/IOU_Restored_Apex_Classes_zJE</report>
+                <report>IOUFolder/IOU_Restored_Apex_Classes_zJE</report>
             </dashboardComponent>
             <rowIndex>12</rowIndex>
             <rowSpan>12</rowSpan>
