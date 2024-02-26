@@ -12,6 +12,14 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>IOU</label>
     <navType>Console</navType>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>IOU_Home</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>Apex_Class__c</tabs>
     <tabs>Apex_Method__c</tabs>
@@ -19,7 +27,6 @@
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>IOU_UtilityBar1</utilityBar>
     <workspaceConfig>
         <mappings>
             <tab>Apex_Class__c</tab>
@@ -31,7 +38,13 @@
             <tab>Apex_Violation__c</tab>
         </mappings>
         <mappings>
+            <tab>standard-Dashboard</tab>
+        </mappings>
+        <mappings>
             <tab>standard-home</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-report</tab>
         </mappings>
     </workspaceConfig>
 </CustomApplication>
