@@ -2,8 +2,19 @@
 private class PMDScanService_Test {
 
     @IsTest
-    static void should_parse_file_name() {
+    static void should_parse_file_name_Linux_Scenario() {
         String sampleRawFileName = '"/IdeaProjects/iou-app/force-app/main/default/classes/TestOne.cls"';
+
+        Test.startTest();
+        String parsedFileName = PMDScanService.parseFileName(sampleRawFileName);
+        Test.stopTest();
+
+        Assert.areEqual('TestOne', parsedFileName);
+    }
+
+    @IsTest
+    static void should_parse_file_name_Windows_Scenario() {
+        String sampleRawFileName = '"\\IdeaProjects\\iou-app\\force-app\\main\\default\\classes\\TestOne.cls"';
 
         Test.startTest();
         String parsedFileName = PMDScanService.parseFileName(sampleRawFileName);
