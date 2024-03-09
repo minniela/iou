@@ -114,6 +114,7 @@
     <types>
         <members>Apex_Method__c.Apex_Method_Compact</members>
         <members>Apex_Class__c.Apex_Class_Compact</members>
+        <members>Apex_Violation__c.Apex_Violation_Compact</members>
         <name>CompactLayout</name>
     </types>
     <types>
