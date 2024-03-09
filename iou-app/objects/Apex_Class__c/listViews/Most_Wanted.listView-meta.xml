@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Trigger_Audit_View</fullName>
+    <fullName>Most_Wanted</fullName>
     <columns>NAME</columns>
     <columns>SOC_Level__c</columns>
     <columns>Current_Violation_Count__c</columns>
@@ -10,9 +10,14 @@
     <columns>LAST_UPDATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>Has_Trigger_Logic__c</field>
-        <operation>equals</operation>
-        <value>1</value>
+        <field>Current_Cost_to_Understand_Maintain__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
     </filters>
-    <label>Trigger Audit Impact</label>
+    <filters>
+        <field>SOC_Level__c</field>
+        <operation>equals</operation>
+        <value>Level 0</value>
+    </filters>
+    <label>IOU Most Wanted</label>
 </ListView>
