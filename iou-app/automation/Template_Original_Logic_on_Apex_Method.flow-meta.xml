@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <assignments>
+        <name>Set_Default_Value</name>
+        <label>Set Default Value</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Original_Logic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OriginalLogicTemplate</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <constants>
+        <description>Entrance Criteria -&gt; WHEN
+Process Outcome -&gt; THEN</description>
+        <name>OriginalLogicTemplate</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>&lt;p&gt;&lt;strong&gt;Entrance Criteria&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;WHEN&lt;/p&gt; &lt;p&gt;&lt;br&gt;&lt;/p&gt; &lt;p&gt;&lt;strong&gt;Process Outcome&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;THEN&lt;/p&gt;</stringValue>
+        </value>
+    </constants>
+    <description>Provides a default HTML template on the Original Logic field for consistency and convenience.</description>
+    <environments>Default</environments>
+    <interviewLabel>Template Original Logic on Apex Method {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Template Original Logic on Apex Method</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Default_Value</targetReference>
+        </connector>
+        <object>Apex_Method__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
