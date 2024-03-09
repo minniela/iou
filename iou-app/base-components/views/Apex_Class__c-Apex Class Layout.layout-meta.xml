@@ -195,12 +195,17 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Category__c</fields>
+        <fields>Method__c</fields>
+        <fields>Current_Complexity_Score__c</fields>
+        <fields>Is_Resolved__c</fields>
         <relatedList>Apex_Violation__c.Apex_Class__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Method_Name__c</fields>
         <fields>Status__c</fields>
+        <fields>Blocked_Reason__c</fields>
         <relatedList>Apex_Method__c.Apex_Class__c</relatedList>
     </relatedLists>
     <relatedLists>
