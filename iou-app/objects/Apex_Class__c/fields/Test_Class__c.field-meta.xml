@@ -6,6 +6,15 @@
     <externalId>false</externalId>
     <inlineHelpText>The primary test class that covers this Apex.</inlineHelpText>
     <label>Test Class</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Apex_Class__c.Name</field>
+            <operation>contains</operation>
+            <value>Test</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
     <referenceTo>Apex_Class__c</referenceTo>
     <relationshipLabel>Test Classes</relationshipLabel>
     <relationshipName>Test_Classes</relationshipName>
