@@ -5,6 +5,10 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
+        <field>Apex_Class__c.Starting_Violation_Count__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
         <field>Apex_Class__c.Starting_Cost_to_Understand_Maintain__c</field>
     </columns>
     <columns>

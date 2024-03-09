@@ -19,6 +19,7 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Apex_Class__c.Cyclomatic_Complexity_Improvement__c</field>
     </columns>
+    <description>This report is used to create the IOU Success Metrics Dashboard, which can be found on the Home Page of the IOU App.</description>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>

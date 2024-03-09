@@ -23,10 +23,6 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Apex_Class__c.Starting_Code_Smells__c</field>
     </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Apex_Class__c.Starting_Ineffectual_Tests__c</field>
-    </columns>
     <description>From the IOU App perspective, any class with a reporting Cognitive Complexity score is the most likely to cause problems in an org. There classes are like weak links on a chain.</description>
     <filter>
         <criteriaItems>

@@ -11,6 +11,7 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Apex_Class__c.Current_Ineffectual_Tests__c</field>
     </columns>
+    <description>This reports on any tests where there are obvious problems with missing assertions. A test without an assert is barely useful. These are known violations, but the complete reality of test quality requires human judgement.</description>
     <filter>
         <criteriaItems>
             <column>Apex_Class__c.Starting_Ineffectual_Tests__c</column>
