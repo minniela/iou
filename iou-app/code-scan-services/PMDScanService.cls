@@ -1,7 +1,14 @@
 public without sharing class PMDScanService {
 
     public static String parseFileName(String unformattedFileName) {
-        Integer indexOfFinalDirectory = unformattedFileName.lastIndexOf('/');
+        Integer indexOfFinalDirectory = 0;
+        //Windows OS uses the \ separator, Linux based uses /
+        if (unformattedFileName.contains('\\')) {
+            indexOfFinalDirectory = unformattedFileName.lastIndexOf('\\');
+        }
+        else {
+            indexOfFinalDirectory = unformattedFileName.lastIndexOf('/');
+        }
         String trimmedFileName = unformattedFileName.substring(indexOfFinalDirectory + 1);
         return trimmedFileName.remove('.cls').remove('"');
     }
