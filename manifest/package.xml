@@ -28,6 +28,7 @@
         <members>Apex_Class__c</members>
         <members>Apex_Method__c</members>
         <members>Apex_Violation__c</members>
+        <members>Declarative_Automation__c</members>
         <name>CustomObject</name>
     </types>
     <types>
