@@ -68,9 +68,9 @@
     <tabs>Apex_Class__c</tabs>
     <tabs>Apex_Method__c</tabs>
     <tabs>Apex_Violation__c</tabs>
+    <tabs>Declarative_Automation__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
-    <tabs>Declarative_Automation__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
