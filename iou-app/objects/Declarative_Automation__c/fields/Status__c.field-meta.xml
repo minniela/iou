@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>This represents the lifecycle of a Declarative Automation record.</description>
+    <externalId>false</externalId>
+    <label>Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Created</fullName>
+                <default>true</default>
+                <label>Created</label>
+            </value>
+            <value>
+                <fullName>Excavating</fullName>
+                <default>false</default>
+                <label>Excavating</label>
+            </value>
+            <value>
+                <fullName>Ready for Validation</fullName>
+                <default>false</default>
+                <label>Ready for Validation</label>
+            </value>
+            <value>
+                <fullName>Validating</fullName>
+                <default>false</default>
+                <label>Validating</label>
+            </value>
+            <value>
+                <fullName>Blocked</fullName>
+                <default>false</default>
+                <label>Blocked</label>
+            </value>
+            <value>
+                <fullName>Deprecated</fullName>
+                <default>false</default>
+                <label>Deprecated</label>
+            </value>
+            <value>
+                <fullName>Remodeling</fullName>
+                <default>false</default>
+                <label>Remodeling</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

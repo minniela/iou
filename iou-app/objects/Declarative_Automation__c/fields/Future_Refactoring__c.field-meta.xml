@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Future_Refactoring__c</fullName>
+    <description>Typically, this section is used to identify where the Declarative Automation logic will be refactored to. This could be a new Apex Method or it could be a Flow.</description>
+    <externalId>false</externalId>
+    <label>Future Refactoring</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

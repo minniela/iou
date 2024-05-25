@@ -28,6 +28,7 @@
         <members>Apex_Class__c</members>
         <members>Apex_Method__c</members>
         <members>Apex_Violation__c</members>
+        <members>Declarative_Automation__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -77,6 +78,7 @@
         <members>Apex_Class__c</members>
         <members>Apex_Method__c</members>
         <members>Apex_Violation__c</members>
+        <members>Declarative_Automation__c</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -105,6 +107,7 @@
         <members>Apex_Class__c-Apex Class Layout</members>
         <members>Apex_Method__c-Apex Method Layout</members>
         <members>Apex_Violation__c-Apex Violation Layout</members>
+        <members>Declarative_Automation__c-Declarative Automation Layout</members>
         <name>Layout</name>
     </types>
     <types>
