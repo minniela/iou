@@ -70,6 +70,7 @@
     <tabs>Apex_Violation__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
+    <tabs>Declarative_Automation__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
@@ -80,6 +81,9 @@
         </mappings>
         <mappings>
             <tab>Apex_Violation__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Declarative_Automation__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>
