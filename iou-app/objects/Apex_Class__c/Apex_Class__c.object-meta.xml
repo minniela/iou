@@ -147,9 +147,9 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Apex_Class_Compact</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Apex Class records are used to quantitatively measure and report on the quality of design, non-functional requirements, and architecture of class files.</description>
+    <description>Apex Class records are used to quantitatively measure and report on the code, design, and architectural quality for a given class file.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
