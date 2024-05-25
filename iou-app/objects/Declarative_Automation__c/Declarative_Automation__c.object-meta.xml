@@ -156,9 +156,8 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Declarative Automation</label>
     <nameField>
-        <displayFormat>DC-{0000}</displayFormat>
         <label>Declarative Automation  Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Declarative Automations</pluralLabel>
     <searchLayouts></searchLayouts>

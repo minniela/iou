@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Blocked_Reason__c</fullName>
+    <description>Validation usually stalls because an answer needs to be found. Sometimes the internal team can answer, other times external input is required.</description>
+    <externalId>false</externalId>
+    <label>Blocked Reason</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Needs Team Review</fullName>
+                <default>false</default>
+                <label>Needs Team Review</label>
+            </value>
+            <value>
+                <fullName>Needs External Review</fullName>
+                <default>false</default>
+                <label>Needs External Review</label>
+            </value>
+            <value>
+                <fullName>Needs Break/Fix Review</fullName>
+                <default>false</default>
+                <label>Needs Break/Fix Review</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
