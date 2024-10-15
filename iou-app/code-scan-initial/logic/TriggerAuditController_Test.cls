@@ -1,5 +1,5 @@
 @IsTest
-private class TriggerAudit_Test {
+private class TriggerAuditController_Test {
     @IsTest
     static void testBehavior() {
     }

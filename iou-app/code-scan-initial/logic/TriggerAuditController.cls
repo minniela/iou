@@ -1,4 +1,4 @@
-public without sharing class TriggerAudit {
+public without sharing class TriggerAuditController {
 
     @AuraEnabled
     public static Boolean flagApexClass(String className) {
