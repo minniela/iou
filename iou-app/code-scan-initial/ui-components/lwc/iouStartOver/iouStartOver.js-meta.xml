@@ -7,6 +7,6 @@
     <isExposed>true</isExposed>
     <masterLabel>IOU Start Over</masterLabel>
     <targets>
-        <target>lightning__HomePage</target>
+        <target>lightning__AppPage</target>
     </targets>
 </LightningComponentBundle>
