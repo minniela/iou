@@ -93,6 +93,7 @@
         <members>IOU_Home</members>
         <members>Apex_Class_Record_Page</members>
         <members>Apex_Method_Record_Page</members>
+        <members>IOU_Starting_Point</members>
         <name>FlexiPage</name>
     </types>
     <types>
@@ -101,6 +102,10 @@
     </types>
     <types>
         <members>Apex_Class__c.Trigger_Audit_View</members>
+        <members>Apex_Class__c.All</members>
+        <members>Apex_Class__c.Most_Wanted</members>
+        <members>Apex_Method__c.All</members>
+        <members>Apex_Violation__c.All</members>
         <name>ListView</name>
     </types>
     <types>
