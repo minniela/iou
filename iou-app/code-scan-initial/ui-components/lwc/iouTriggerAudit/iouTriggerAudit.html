@@ -29,7 +29,7 @@
           </li>
           <li class="slds-item">
             <p class="slds-p-around_small">
-              <lightning-input type="text" value={className} label="Apex Class Name"></lightning-input>
+              <lightning-input type="text" value={className} label="Apex Class Name" onchange={setClassName}></lightning-input>
             </p>
             <p class="slds-p-around_small">
               <lightning-button label="Save" variant="brand" onclick={saveClass} class="slds-m-left_x-small" ></lightning-button>
