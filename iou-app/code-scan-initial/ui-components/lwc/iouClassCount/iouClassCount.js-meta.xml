@@ -6,5 +6,6 @@
   <masterLabel>IOU Class Count</masterLabel>
   <targets>
     <target>lightning__HomePage</target>
+    <target>lightning__AppPage</target>
   </targets>
 </LightningComponentBundle>

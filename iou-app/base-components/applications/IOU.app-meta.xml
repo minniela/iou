@@ -71,6 +71,7 @@
     <tabs>Declarative_Automation__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
+    <tabs>IOU_Starting_Point</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
@@ -84,6 +85,9 @@
         </mappings>
         <mappings>
             <tab>Declarative_Automation__c</tab>
+        </mappings>
+        <mappings>
+            <tab>IOU_Starting_Point</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>
