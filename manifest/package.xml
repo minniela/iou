@@ -79,6 +79,7 @@
         <members>Apex_Method__c</members>
         <members>Apex_Violation__c</members>
         <members>Declarative_Automation__c</members>
+        <members>IOU_Starting_Point</members>
         <name>CustomTab</name>
     </types>
     <types>
