@@ -46,4 +46,5 @@
   <rule ref="category/apex/errorprone.xml/OverrideBothEqualsAndHashcode" /> <!-- Bad Practice -->
   <rule ref="category/apex/performance.xml/AvoidDebugStatements" /> <!-- Bad Practice -->
   <rule ref="category/apex/performance.xml/OperationWithLimitsInLoop" /> <!-- Bad Practice -->
+  <rule ref="category/apex/performance.xml/OperationWithHighCostInLoop" /> <!-- Bad Practice -->
 </ruleset>
