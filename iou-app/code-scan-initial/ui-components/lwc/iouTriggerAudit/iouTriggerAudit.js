@@ -31,11 +31,16 @@ export default class IOUTriggerAudit extends LightningElement {
         this.classesCreated = payload.classCount > 0;
     }
 
+    setClassName(event) {
+        this.className = event.detail.value;
+    }
+
     saveClass() {
         flagApex({className: this.className})
             .then(wasSuccessful => {
                 if (wasSuccessful === true) {
                     this.showToast('The Apex Class was successfully audited!', 'success');
+                    this.className = '';
                 }
                 else {
                     this.showToast('The class was unable to be saved. Checks the debug logs for more info.', 'error');
