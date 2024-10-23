@@ -8,15 +8,21 @@
   <description>
     A richer collection of rules that incorporates class level violations, most notably class level Cognitive
     Complexity violations. Cyclomatic Complexity will still not report at the class level, but that is because it
-    over-reports at the class level.
+    over-reports at the class level. Lastly, method level reporting for both complexity types is given more leeway, as
+    the Level 1 code is easier to read, understand, change, and test.
   </description>
 
   <rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveAsserts" /> <!-- Ineffectual Test -->
-  <rule ref="category/apex/design.xml/CognitiveComplexity" /> <!-- Cost to Understand and Modify -->
+  <rule ref="category/apex/design.xml/CognitiveComplexity"> <!-- Cost to Understand & Maintain -->
+    <properties>
+      <property name="classReportLevel" value="100" />
+      <property name="methodReportLevel" value="30" />
+    </properties>
+  </rule>
   <rule ref="category/apex/design.xml/CyclomaticComplexity"> <!-- Cost to Change & Test -->
     <properties>
       <property name="classReportLevel" value="9999" />
-      <property name="methodReportLevel" value="10" />
+      <property name="methodReportLevel" value="20" />
     </properties>
   </rule>
   <rule ref="category/apex/bestpractices.xml/UnusedLocalVariable" /> <!-- Code Smell -->
@@ -27,7 +33,6 @@
   <rule ref="category/apex/codestyle.xml/WhileLoopsMustUseBraces" /> <!-- Code Smell -->
   <rule ref="category/apex/design.xml/AvoidDeeplyNestedIfStmts" /> <!-- Code Smell -->
   <rule ref="category/apex/design.xml/ExcessiveParameterList" /> <!-- Code Smell -->
-  <!--  <rule ref="category/apex/design.xml/UnusedMethod" /> &lt;!&ndash; Code Smell &ndash;&gt;-->
   <rule ref="category/apex/errorprone.xml/EmptyCatchBlock" /> <!-- Code Smell -->
   <rule ref="category/apex/errorprone.xml/EmptyIfStmt" /> <!-- Code Smell -->
   <rule ref="category/apex/errorprone.xml/EmptyStatementBlock" /> <!-- Code Smell -->
@@ -43,7 +48,11 @@
   <rule ref="category/apex/errorprone.xml/OverrideBothEqualsAndHashcode" /> <!-- Bad Practice -->
   <rule ref="category/apex/performance.xml/AvoidDebugStatements" /> <!-- Bad Practice -->
   <rule ref="category/apex/performance.xml/OperationWithLimitsInLoop" /> <!-- Bad Practice -->
+  <rule ref="category/apex/performance.xml/OperationWithHighCostInLoop" /> <!-- Bad Practice -->
+
+  <!-- Level 1 Specific -->
   <rule ref="category/apex/bestpractices.xml/AvoidGlobalModifier" /> <!-- Bad Practice -->
+  <rule ref="category/apex/design.xml/UnusedMethod" /> <!-- Code Smell -->
   <rule ref="category/apex/design.xml/ExcessiveClassLength" /> <!-- Design Smell -->
   <rule ref="category/apex/design.xml/NcssConstructorCount" /> <!-- Design Smell -->
   <rule ref="category/apex/design.xml/NcssMethodCount" /> <!-- Design Smell -->
