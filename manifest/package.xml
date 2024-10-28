@@ -150,5 +150,9 @@
         <members>*</members>
         <name>FlowDefinition</name>
     </types>
+    <types>
+        <members>Apex_Class__c.Create_Method</members>
+        <name>QuickAction</name>
+    </types>
     <version>58.0</version>
 </Package>
