@@ -4,7 +4,7 @@ const getInstructions = () => {
         {
             title: 'Download the Ruleset',
             instruction: 'visit the link below to download',
-            link: 'https://github.com/minniela/iou',
+            link: 'https://github.com/minniela/iou/blob/main/custom-rulesets/level-0-tech-debt-ruleset.xml',
             linkText: 'IOU GitHub Repo'
         },
         {
