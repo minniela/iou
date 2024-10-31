@@ -4,7 +4,7 @@ const getInstructions = () => {
         {
             title: 'Download the Ruleset',
             instruction: 'visit the link below to download',
-            link: 'https://github.com/minniela/iou',
+            link: 'https://github.com/minniela/iou/blob/main/custom-rulesets/level-0-tech-debt-ruleset.xml',
             linkText: 'IOU GitHub Repo'
         },
         {
@@ -48,9 +48,9 @@ const getInstructions = () => {
         },
         {
             title: 'You\'re All Set!',
-            instruction: 'review the level of Apex Tech Debt',
-            link: 'https://' + hostname + '', //todo: add link to report or dashboard,
-            linkText: 'IOU Metrics Report' //todo: update text after solution is created
+            instruction: 'review reports on the level of Apex Tech Debt',
+            link: 'https://' + hostname + '/lightning/o/Report/home?queryScope=mru',
+            linkText: 'IOU Trigger Impact Findings'
         }
     ];
 }
