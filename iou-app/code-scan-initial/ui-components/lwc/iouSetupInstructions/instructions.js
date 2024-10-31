@@ -48,9 +48,9 @@ const getInstructions = () => {
         },
         {
             title: 'You\'re All Set!',
-            instruction: 'review the level of Apex Tech Debt',
-            link: 'https://' + hostname + '', //todo: add link to report or dashboard,
-            linkText: 'IOU Metrics Report' //todo: update text after solution is created
+            instruction: 'review reports on the level of Apex Tech Debt',
+            link: 'https://' + hostname + '/lightning/o/Report/home?queryScope=mru',
+            linkText: 'IOU Trigger Impact Findings'
         }
     ];
 }
