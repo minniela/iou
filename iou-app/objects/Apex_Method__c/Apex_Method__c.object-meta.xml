@@ -141,7 +141,7 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Apex_Method_Compact</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Apex Methods represent public methods in an Apex Class. There records are used to excavate, validate, and manage the automation obscured in the code.</description>
     <enableActivities>false</enableActivities>

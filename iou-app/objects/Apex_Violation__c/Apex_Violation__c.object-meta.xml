@@ -141,7 +141,7 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Apex_Violation_Compact</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Apex Violations hold the violations found during SFCA scans with the selected PMD ruleset. These violations form the derived metrics for the related Apex Class.</description>
     <enableActivities>false</enableActivities>
