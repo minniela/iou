@@ -54,6 +54,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>In_Scope__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Has_Trigger_Logic__c</field>
             </layoutItems>
             <layoutItems>
