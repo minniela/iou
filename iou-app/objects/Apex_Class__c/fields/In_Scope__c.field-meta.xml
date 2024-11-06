@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Scope__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Flags a class for refactoring. This field imparts a sense of priority: when checked, it is included in the scope of a refactoring effort.</description>
+    <externalId>false</externalId>
+    <label>In Scope</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
