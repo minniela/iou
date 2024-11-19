@@ -43,7 +43,7 @@ const getInstructions = () => {
         {
             title: 'You\'re All Set!',
             instruction: 'review reports on the level of Apex Tech Debt',
-            link: 'https://' + hostname + '/lightning/o/Report/home?queryScope=mru',
+            link: 'https://' + hostname + '/lightning/o/Report/home',
             linkText: 'IOU Trigger Impact Findings'
         }
     ];
