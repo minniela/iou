@@ -8,12 +8,6 @@ const getInstructions = () => {
             linkText: 'IOU GitHub Repo'
         },
         {
-            title: 'Install the SF CLI',
-            instruction: 'skip this if already installed',
-            link: 'https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm',
-            linkText: "Salesforce CLI Download"
-        },
-        {
             title: 'Install SFCA',
             instruction: '<div class="slds-text-font_monospace">sfdx plugins:install @salesforce/sfdx-scanner</div>',
             link: 'https://forcedotcom.github.io/sfdx-scanner/en/v3.x/getting-started/install/',
@@ -49,7 +43,7 @@ const getInstructions = () => {
         {
             title: 'You\'re All Set!',
             instruction: 'review reports on the level of Apex Tech Debt',
-            link: 'https://' + hostname + '/lightning/o/Report/home?queryScope=mru',
+            link: 'https://' + hostname + '/lightning/o/Report/home',
             linkText: 'IOU Trigger Impact Findings'
         }
     ];
