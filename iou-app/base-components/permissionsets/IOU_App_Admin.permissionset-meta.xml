@@ -177,6 +177,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apex_Method__c.As_Is__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apex_Method__c.Blocked_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>

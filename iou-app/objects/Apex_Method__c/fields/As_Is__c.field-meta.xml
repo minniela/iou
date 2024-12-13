@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>As_Is__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates that the utility, need, or logic of the method remains poorly understood, even after validation. When marked &quot;As Is&quot;, we are not approving or disapproving of the logic, just letting it be. As more of the system is refactored, these methods may obtain clearer direction.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The method cannot be validated or deprecated, for now, and is just left as is. This may change when more of the system is refactored.</inlineHelpText>
+    <label>As Is</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
