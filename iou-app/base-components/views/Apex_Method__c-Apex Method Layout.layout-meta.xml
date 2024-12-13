@@ -33,6 +33,10 @@
                 <behavior>Edit</behavior>
                 <field>Blocked_Reason__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>As_Is__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -132,7 +136,27 @@
     <summaryLayout>
         <masterLabel>00hDp000003xoeq</masterLabel>
         <sizeX>4</sizeX>
-        <sizeY>0</sizeY>
+        <sizeY>1</sizeY>
+        <summaryLayoutItems>
+            <field>Method_Name__c</field>
+            <posX>0</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>Status__c</field>
+            <posX>1</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>Review_Sequence__c</field>
+            <posX>2</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>Apex_Class__c</field>
+            <posX>3</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>
 </Layout>
