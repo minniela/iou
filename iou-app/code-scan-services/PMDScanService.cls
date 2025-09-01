@@ -44,11 +44,12 @@ public without sharing class PMDScanService {
     }
 
     public class ApexViolation {
-        public String ruleName;
-        public String message;
-        public String category;
-        public String url;
-        public String line;
-        public String endLine;
+        public String ruleName; //todo: rule
+        public String message;  //todo: validate parsing rules
+        public String category; //todo: deprecate
+        public String url;      //todo: deprecate
+        public String line;     //todo: deprecate
+        public String endLine;  //todo: deprecate
+        //todo: file name is now in "locations", which will need to be an inner class as well
     }
 }
